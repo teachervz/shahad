@@ -541,6 +541,248 @@ body.idle #hint{opacity:0}
 .lb-row.win{transform:scale(1.03);box-shadow:0 0 0 5px var(--c),var(--shadow)}
 .lb-row.win .lb-pos{font-size:44px}
 
+/* ---------- بيانات النشاط (ورقة عمل) ---------- */
+.act{display:flex;gap:12px;flex-wrap:wrap;margin-top:-6px}
+.act span{background:#fff;border:2px solid var(--line);border-radius:999px;padding:4px 20px;font-size:23px;font-weight:800;color:var(--muted)}
+.act b{color:var(--pd)}
+
+/* ---------- الغلاف ---------- */
+.cover-bg{position:absolute;inset:-64px -110px -110px;background:#0b2a33 center/cover no-repeat;z-index:0}
+.cover-bg::after{content:"";position:absolute;inset:0;background:linear-gradient(270deg,rgba(23,12,58,.92) 0%,rgba(46,16,101,.75) 45%,rgba(46,16,101,.15) 100%)}
+.cover{position:relative;z-index:1;flex:1;display:flex;flex-direction:column;justify-content:center;gap:24px;color:#fff;max-width:1100px}
+.cover .pill{background:rgba(255,255,255,.16);color:#fff;border:2px solid rgba(255,255,255,.35)}
+.cover-title{font-size:150px;font-weight:900;line-height:1.2;text-shadow:0 10px 40px rgba(0,0,0,.35)}
+.cover-chap{display:flex;align-items:center;gap:24px;font-size:44px;font-weight:800}
+.cover-chap b{width:130px;height:130px;border-radius:50%;background:linear-gradient(140deg,var(--pink),var(--p));display:flex;align-items:center;justify-content:center;
+  font-size:80px;box-shadow:0 0 0 14px rgba(255,255,255,.15)}
+.cover-teacher{font-size:32px;font-weight:700;opacity:.85}
+
+/* ---------- شريط الذكريات ---------- */
+.film{position:relative;background:#1b1230;border-radius:18px;padding:34px 30px;display:flex;gap:30px;justify-content:center;
+  box-shadow:var(--shadow);animation:filmIn 1.1s cubic-bezier(.2,.8,.2,1) backwards}
+.film::before,.film::after{content:"";position:absolute;left:18px;right:18px;height:14px;
+  background:linear-gradient(90deg,#FBFAFF 0 24px,transparent 24px) repeat-x;background-size:52px 14px;opacity:.85}
+.film::before{top:10px}.film::after{bottom:10px}
+@keyframes filmIn{from{transform:translateX(-120%)}}
+.frame{position:relative;width:440px;height:190px;border-radius:12px;border:5px solid transparent;color:#fff;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;gap:4px;background:linear-gradient(150deg,var(--c),color-mix(in srgb,var(--c) 55%,#1e0b4a));
+  filter:saturate(.55) brightness(.85);transition:.35s}
+.frame:hover{filter:none;transform:translateY(-4px)}
+.frame.on{filter:none;border-color:#FDE68A;transform:scale(1.05);box-shadow:0 0 30px rgba(253,230,138,.45)}
+.frame .fr-ic{font-size:64px;line-height:1.1}
+.frame .fr-t{font-size:30px;font-weight:900}
+.frame .fr-n{position:absolute;top:8px;left:14px;font-size:20px;font-weight:800;opacity:.8;direction:ltr}
+.film-panel{flex:1;min-height:0;background:#fff;border-radius:30px;box-shadow:var(--shadow);padding:26px 40px;display:flex;flex-direction:column;justify-content:center}
+.fpane{display:none;flex-direction:column;gap:18px}
+.fpane.on{display:flex;animation:pop .45s}
+.fpane .opt{font-size:28px;padding:12px 24px}
+.fpane .opt-ic{width:58px;height:58px;font-size:30px}
+.fpane .feedback{min-height:46px;font-size:34px}
+.fpane .q-card{box-shadow:none;background:var(--pss);font-size:34px;padding:16px 30px}
+.fpane-intro{text-align:center;display:flex;flex-direction:column;gap:16px;align-items:center}
+.fpane-intro .fi-ic{font-size:110px;animation:floaty 5s ease-in-out infinite}
+.fpane-intro h3{font-size:58px;font-weight:900;color:var(--pdd)}
+.fpane-intro p{font-size:32px;font-weight:700;color:var(--muted)}
+
+/* ---------- خريطة دروس الفصل ---------- */
+.lessons{display:flex;align-items:center;justify-content:center;gap:0}
+.lsn{position:relative;width:440px;height:380px;background:#fff;border:3px solid var(--line);border-radius:34px;box-shadow:var(--shadow-s);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;text-align:center;padding:24px}
+.lsn .ls-n{font-size:28px;font-weight:800;color:var(--muted)}
+.lsn .ls-ic{font-size:92px;line-height:1.15}
+.lsn .ls-t{font-size:40px;font-weight:900;color:var(--pdd)}
+.lsn.done{opacity:.75}
+.lsn.done::after{content:"✓";position:absolute;top:18px;left:22px;width:52px;height:52px;border-radius:50%;background:var(--ok);color:#fff;font-size:30px;font-weight:900;display:flex;align-items:center;justify-content:center}
+.lsn.now{background:linear-gradient(150deg,var(--p2),var(--pd));border-color:transparent;transform:scale(1.08);box-shadow:0 0 0 14px var(--ps),var(--shadow);animation:nowPulse 2.4s ease-in-out infinite}
+.lsn.now .ls-n,.lsn.now .ls-t{color:#fff}
+.lsn .ls-badge{position:absolute;top:-26px;background:var(--pink);color:#fff;font-size:24px;font-weight:900;padding:6px 22px;border-radius:999px;box-shadow:var(--shadow-s)}
+@keyframes nowPulse{50%{box-shadow:0 0 0 26px rgba(237,233,254,.6),var(--shadow)}}
+.ls-link{width:90px;height:6px;background:repeating-linear-gradient(90deg,#C9BCEB 0 14px,transparent 14px 24px)}
+.chap-pill{align-self:center;font-size:36px}
+
+/* ---------- نواتج التعلم ---------- */
+.outs{display:grid;grid-template-columns:1fr 1fr;gap:16px 28px}
+.outs .goal{font-size:28px;padding:12px 22px;gap:18px}
+.outs .goal-n{width:52px;height:52px;font-size:26px}
+.outs .goal-check{width:48px;height:48px;font-size:28px}
+.outs .goal b{color:var(--p)}
+.outs>div:last-child:nth-child(odd){grid-column:1/-1;width:50%;justify-self:center}
+
+/* ---------- استراتيجية البحث (محادثة) ---------- */
+.rs{flex:1;display:grid;grid-template-columns:1fr 1fr;gap:40px;min-height:0}
+.rs-side{display:flex;flex-direction:column;gap:22px;justify-content:center}
+.rs-side .def-card{padding:30px 40px}
+.rs-side .def-text{font-size:38px;line-height:1.8}
+.rs-side .def-text b{color:var(--p)}
+.rs-task{display:flex;gap:20px;align-items:center;background:#fff;border-radius:26px;padding:22px 30px;font-size:32px;font-weight:800;line-height:1.55;
+  border-right:10px solid var(--pink);box-shadow:var(--shadow-s)}
+.rs-task .ni{font-size:64px}
+.gpt{background:#fff;border-radius:28px;border:3px solid #E5E5E5;box-shadow:var(--shadow);display:flex;flex-direction:column;overflow:hidden;color:#0d0d0d}
+.gpt-head{display:flex;align-items:center;gap:14px;padding:14px 24px;border-bottom:2px solid #EFEFEF;font-size:28px;font-weight:800}
+.gpt-logo{width:46px;height:46px;border-radius:50%;background:#0d0d0d;color:#fff;display:flex;align-items:center;justify-content:center;font-size:26px}
+.gpt-head small{margin-inline-start:auto;font-size:20px;color:#8E8E8E;direction:ltr}
+.gpt-body{flex:1;padding:22px 26px;display:flex;flex-direction:column;gap:16px;overflow:hidden;font-size:26px;line-height:1.65}
+.gpt-empty{margin:auto;text-align:center;color:#8E8E8E;font-size:30px;font-weight:700}
+.gpt-u{align-self:flex-start;background:#F1F1F1;border-radius:24px;padding:10px 24px;font-weight:700;max-width:85%;animation:pop .35s}
+.gpt-a{display:flex;gap:14px;align-items:flex-start;font-weight:600;animation:typeIn .35s}
+.gpt-a .gpt-logo{width:40px;height:40px;font-size:22px;flex:none}
+.gpt-a b{color:#0d0d0d}
+.gpt-dots::after{content:"●●●";letter-spacing:4px;color:#B4B4B4;animation:blink 1s infinite}
+.gpt-foot{padding:14px 20px;border-top:2px solid #EFEFEF;display:flex;gap:12px;flex-wrap:wrap}
+.gpt-foot button{flex:1;font-size:24px;font-weight:800;padding:12px 18px;border-radius:999px;background:#F4F4F4;border:2px solid #E5E5E5;transition:.2s}
+.gpt-foot button:hover{background:#ECECEC;transform:translateY(-2px)}
+.gpt-foot button:disabled{opacity:.4;pointer-events:none}
+.gpt-open{text-decoration:none;align-self:flex-start}
+
+/* ---------- رتّبي الكلمات ---------- */
+.wo-bank{display:flex;flex-wrap:wrap;gap:18px;justify-content:center;min-height:84px;background:rgba(255,255,255,.7);border:3px dashed var(--line);border-radius:30px;padding:16px}
+.t-wordorder .lead{font-size:28px}
+.t-wordorder .def-card{padding:24px 44px}
+.t-wordorder .def-text{font-size:38px;line-height:1.95}
+.t-wordorder .blank{font-size:38px}
+.t-wordorder .note-card{font-size:25px;padding:14px 30px}
+.t-wordorder .note-card .ni{font-size:54px}
+.blank.next{background:var(--ps);box-shadow:0 0 0 5px rgba(124,58,237,.25);animation:pulse 1.4s infinite}
+
+/* ---------- ربط بالرياضيات ---------- */
+.math-q{border-right-color:var(--amber)}
+.math-q b{color:#B45309}
+.math-link{background:linear-gradient(135deg,var(--p2),var(--pd));color:#fff;border-radius:28px;padding:20px 34px;font-size:32px;font-weight:800;line-height:1.55;
+  display:none;gap:18px;align-items:center}
+.math-link.show{display:flex;animation:pop .45s}
+.math-link .ni{font-size:56px}
+.t-math .rev-t{font-size:30px}
+.t-math .rev-content p{font-size:40px;font-weight:900;color:var(--pdd);direction:rtl}
+
+/* ---------- اكتشاف المغالطة ---------- */
+.fal-top{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.fal-list{display:flex;flex-direction:column;gap:22px}
+.fal{display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:center;background:#fff;border:3px solid var(--line);border-radius:28px;padding:20px 28px;box-shadow:var(--shadow-s)}
+.fal-t{font-size:33px;font-weight:800;line-height:1.6}
+.fal .err{border-radius:8px;transition:.3s}
+.fal.open .err{background:var(--badS);color:var(--bad);text-decoration:line-through 4px}
+.fal-fix{display:none;margin-top:8px;font-size:31px;font-weight:800;color:#065F46;background:var(--okS);border-radius:16px;padding:8px 18px;line-height:1.6}
+.fal-fix b{color:var(--ok)}
+.fal.open{border-color:var(--ok)}
+.fal.open .fal-fix{display:block;animation:pop .4s}
+.fal .btn{font-size:24px;padding:10px 24px}
+
+/* ---------- نشاط (ورقة عمل) ---------- */
+.actv{flex:1;display:grid;grid-template-columns:1fr 300px;gap:40px;min-height:0;align-items:center}
+.actv-main{display:flex;flex-direction:column;gap:20px}
+.actv-side{display:flex;flex-direction:column;align-items:center;gap:22px}
+.actv-side .timer-box.big .timer{width:250px;height:250px}
+.actv-side .timer-box.big .tr-txt{font-size:72px}
+.actv .explain{font-size:30px}
+.actv .chips{opacity:0;transform:translateY(10px);transition:.5s;justify-content:flex-start}
+.actv .chips.show{opacity:1;transform:none}
+.hadith{position:relative;background:linear-gradient(160deg,#FFFDF5,#FFF6DD);border:3px solid #F4D58A;border-radius:28px;padding:16px 32px}
+.hadith p{font-family:'Amiri','Traditional Arabic',serif;font-size:34px;font-weight:700;line-height:1.75;color:#3B2A06}
+.hadith p mark{background:linear-gradient(transparent 55%,#FDE68A 55%);color:#7C2D12;padding:0 4px}
+.hadith small{font-size:22px;font-weight:800;color:#B45309}
+.story{display:flex;gap:26px;align-items:center;background:#fff;border-radius:30px;padding:26px 34px;box-shadow:var(--shadow);border:3px solid var(--line)}
+.story .st-ic{font-size:110px;flex:none;animation:floaty 5s ease-in-out infinite}
+.story p{font-size:38px;font-weight:800;line-height:1.6}
+.read-box{display:flex;gap:22px;align-items:center;background:#fff;border-radius:26px;padding:20px 30px;font-size:32px;font-weight:800;line-height:1.55;box-shadow:var(--shadow-s);border-right:10px solid var(--teal)}
+.read-box .ni{font-size:70px}
+
+/* ---------- عجلة الأسماء ---------- */
+.wheel{display:flex;flex-direction:column;align-items:center;gap:14px}
+.wh-box{position:relative;width:var(--ws,540px);height:var(--ws,540px)}
+.wh-box canvas{width:100%;height:100%;border-radius:50%;box-shadow:0 0 0 10px #fff,0 0 0 14px var(--line),var(--shadow);transition:transform 5.2s cubic-bezier(.12,.7,.1,1)}
+.wh-ptr{position:absolute;top:-30px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:26px solid transparent;border-right:26px solid transparent;
+  border-top:50px solid var(--pink);filter:drop-shadow(0 4px 6px rgba(0,0,0,.25));z-index:2}
+.wh-hub{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:120px;height:120px;border-radius:50%;background:linear-gradient(140deg,var(--p2),var(--pd));
+  color:#fff;font-size:30px;font-weight:900;box-shadow:0 0 0 8px #fff,var(--shadow-s);z-index:2;transition:transform .2s}
+.wh-hub:hover{transform:translate(-50%,-50%) scale(1.06)}
+.wh-hub:disabled{opacity:.8}
+.wh-res{min-height:62px;font-size:38px;font-weight:900;color:var(--pd);text-align:center}
+.wh-res.pop{animation:pop .5s}
+.wh-opts{display:flex;gap:18px;align-items:center;font-size:22px;font-weight:700;color:var(--muted)}
+.wh-opts input{width:22px;height:22px;accent-color:var(--p)}
+.wh-opts button{font-size:22px;font-weight:800;color:var(--pd);border:2px solid var(--line);border-radius:999px;padding:2px 16px;background:#fff}
+.cards-wheel{flex:1;display:grid;grid-template-columns:1fr 600px;gap:40px;align-items:center;min-height:0}
+.cards-wheel .cards{grid-template-columns:1fr 1fr}
+#wheelModal{position:absolute;inset:0;z-index:40;background:rgba(27,18,48,.8);display:none;align-items:center;justify-content:center}
+#wheelModal.open{display:flex;animation:inFade .3s}
+#wheelModal .wm-box{background:#FBFAFF;border-radius:44px;padding:50px 70px 30px;position:relative;box-shadow:var(--shadow)}
+#wheelModal .wm-close{position:absolute;top:18px;left:24px;font-size:34px;color:var(--muted)}
+
+/* ---------- ترتيب مع مهام المجموعات ---------- */
+.ord-top{display:flex;align-items:center;justify-content:space-between;gap:30px}
+.ord-top .lead{font-size:31px;line-height:1.5}
+.slots.compact .slot{height:130px;width:210px}
+.slots.compact .placed .pi{font-size:40px}.slots.compact .placed b{font-size:27px}
+.order-info.sm{min-height:0;padding:12px 26px;font-size:26px}
+.order-info.sm .oi-ic{font-size:40px}
+.grp-mini{--h:118px;gap:16px}
+.grp-mini .fc-front{flex-direction:row;gap:14px;padding:12px;border-top-width:0;border-right:12px solid var(--c)}
+.grp-mini .fc-ic{font-size:46px;animation:none}
+.grp-mini .fc-title{font-size:28px}
+.grp-mini .fc-hint{font-size:18px}
+.grp-mini .fc-back{padding:10px 18px}
+.grp-mini .fc-back p{font-size:22px;line-height:1.45}
+
+/* ---------- لعبة التقويم الختامي ---------- */
+.qz{flex:1;display:flex;flex-direction:column;justify-content:center;gap:20px;min-height:0}
+.qz-start,.qz-end{display:flex;flex-direction:column;align-items:center;gap:26px;text-align:center}
+.qz-start .qs-ic,.qz-end .qs-ic{font-size:150px;animation:floaty 4s ease-in-out infinite}
+.qz-start p,.qz-end p{font-size:38px;font-weight:800;color:var(--muted)}
+.qz-play{display:none;flex-direction:column;gap:18px}
+.qz.playing .qz-play{display:flex}
+.qz.playing .qz-start,.qz.playing .qz-end,.qz .qz-end{display:none}
+.qz.ended .qz-end{display:flex}
+.qz.ended .qz-start{display:none}
+.qz-meta{display:flex;align-items:center;gap:24px}
+.qz-dots{display:flex;gap:10px}
+.qz-dots i{width:26px;height:26px;border-radius:50%;background:var(--ps);border:3px solid var(--line)}
+.qz-dots i.cur{background:var(--p2);border-color:var(--p2);transform:scale(1.2)}
+.qz-dots i.ok{background:var(--ok);border-color:var(--ok)}
+.qz-dots i.miss{background:var(--bad);border-color:var(--bad)}
+.qz-bar{flex:1;height:22px;background:var(--ps);border-radius:999px;overflow:hidden}
+.qz-bar i{display:block;height:100%;width:100%;background:linear-gradient(90deg,var(--amber),var(--ok));border-radius:999px;transition:width 1s linear}
+.qz-sec{font-size:36px;font-weight:900;direction:ltr;min-width:80px;text-align:center}
+.qz-nav{display:flex;justify-content:center;gap:20px;min-height:76px}
+
+/* ---------- الواجب ---------- */
+.hw{flex:1;display:grid;grid-template-columns:1fr 1.1fr;gap:44px;min-height:0;align-items:center}
+.hw-steps{display:flex;flex-direction:column;gap:18px}
+.hw-step{display:flex;gap:20px;align-items:center;background:#fff;border:3px solid var(--line);border-radius:24px;padding:16px 26px;font-size:31px;font-weight:800;box-shadow:var(--shadow-s)}
+.hw-step .goal-n{width:58px;height:58px}
+.hw-book{display:flex;gap:16px;align-items:center;font-size:27px;font-weight:800;color:var(--muted)}
+.hw-book img{height:150px;border-radius:16px;border:3px solid var(--line);background:#fff}
+.board{background:#F5F7FA;border-radius:28px;border:3px solid #E2E8F0;box-shadow:var(--shadow);overflow:hidden}
+.bd-head{background:linear-gradient(135deg,#0F766E,#115E59);color:#fff;padding:16px 28px;font-size:30px;font-weight:900;display:flex;align-items:center;gap:14px}
+.bd-head small{margin-inline-start:auto;font-size:22px;opacity:.85}
+.bd-body{padding:22px;display:flex;flex-direction:column;gap:16px}
+.bd-post{background:#fff;border-radius:20px;padding:18px 22px;border:2px solid #E2E8F0}
+.bd-who{display:flex;align-items:center;gap:14px;font-size:24px;font-weight:800;margin-bottom:8px}
+.bd-av{width:54px;height:54px;border-radius:50%;background:#CCFBF1;display:flex;align-items:center;justify-content:center;font-size:30px}
+.bd-who small{display:block;font-size:18px;color:#94A3B8;font-weight:700}
+.bd-q{font-size:29px;font-weight:800;line-height:1.55;color:#0F172A}
+.bd-reply{display:flex;gap:12px;align-items:center;margin-inline-start:40px}
+.bd-reply .bd-av{width:44px;height:44px;font-size:24px;background:var(--ps)}
+.bd-line{flex:1;display:flex;flex-direction:column;gap:8px;background:#fff;border-radius:16px;padding:12px 18px;border:2px solid #E2E8F0}
+.bd-line i{display:block;height:12px;border-radius:9px;background:#E2E8F0}
+.bd-input{display:flex;gap:12px;align-items:center;background:#fff;border:2px solid #CBD5E1;border-radius:999px;padding:8px 10px 8px 22px;font-size:24px;color:#94A3B8;font-weight:700}
+.bd-input span{flex:1}
+.bd-input b{background:#0F766E;color:#fff;border-radius:999px;padding:6px 22px;font-size:22px}
+.hw-img{width:100%;border-radius:28px;box-shadow:var(--shadow);border:3px solid var(--line)}
+
+.hadith p{font-size:29px;line-height:1.65}
+.hadith{padding:10px 28px}
+.actv:has(.hadith) .q-card{font-size:34px;padding:16px 30px}
+.actv:has(.hadith) .chip.lg{font-size:25px;padding:6px 20px}
+.t-mcq .slide-inner:has(.act) .q-card{font-size:32px;padding:18px 32px}
+.t-mcq .slide-inner:has(.act) .opt{font-size:30px;padding:14px 24px}
+.t-mcq .slide-inner:has(.act) .opt-ic{width:62px;height:62px;font-size:34px}
+.t-mcq .slide-inner:has(.act) .content{gap:16px}
+/* طبقة الفيديو داخل شريحة السؤال */
+.vid-ov{position:absolute;inset:-64px -110px -110px;z-index:20;background:rgba(27,18,48,.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
+.vid-ov.show{display:flex;animation:inFade .35s}
+.vid-btn{position:absolute;top:0;left:0;z-index:4}
+.vid-ov .video-box{height:760px}
+
 /* طبقة المؤثرات */
 #fx{position:fixed;inset:0;pointer-events:none;z-index:80}
 .clap-fly{position:fixed;bottom:9vh;pointer-events:none;z-index:81;animation:clapUp 2.2s ease-out forwards}
@@ -553,6 +795,8 @@ body.idle #hint{opacity:0}
 <div id="stage">
   <div class="brand" id="brand"></div>
   <div class="pgnum" id="pgnum"></div>
+  <!-- عجلة الأسماء (تُفتح من زر 🎡 في أي شريحة) -->
+  <div id="wheelModal"><div class="wm-box"><button class="wm-close" title="إغلاق">✕</button><div class="wm-slot"></div></div></div>
 </div>
 
 <!-- شريط التحكم -->
@@ -562,6 +806,7 @@ body.idle #hint{opacity:0}
   <button id="next" title="التالي (→ أو Space)">التالي →</button>
   <span class="sep"></span>
   <button id="clapBtn" class="ib" title="تصفيق (ت)">👏</button>
+  <button id="wheelBtn" class="ib" title="عجلة الأسماء">🎡</button>
   <button id="scoreBtn" class="ib" title="نقاط المجموعات">🏆</button>
   <button id="fsBtn" class="ib" title="ملء الشاشة">⛶</button>
 </nav>
@@ -594,9 +839,12 @@ body.idle #hint{opacity:0}
    • SLIDES : قائمة الشرائح بالترتيب. لإضافة شريحة انسخي أي شريحة والصقيها،
               ولحذف شريحة احذفي القوس { ... } الخاص بها. عدد الشرائح يُحسب تلقائيًا.
    • أنواع الشرائح (type):
-       title, mcq, objectives, brainstorm, blanks, cards, order, footprints,
-       sort, reveal, terminal, tps, compare, match, tf, groups, challenge,
-       review, leaderboard, closing
+       cover, filmstrip, lessons, outcomes, research, wordorder, math, fallacy,
+       activity, quiz, homework, title, mcq, objectives, brainstorm, blanks, cards,
+       order, footprints, sort, reveal, terminal, tps, compare, match, tf, groups,
+       challenge, review, leaderboard, closing
+   • act:{ n, time, kind, goal } داخل أي شريحة = بيانات ورقة العمل (رقم النشاط، المدة، النوع، الهدف).
+   • wheel:true داخل شريحة البطاقات = إظهار عجلة أسماء الطالبات بجانبها (الأسماء في LESSON.students).
    • نظام التنافس: بعد كل إجابة صحيحة تظهر نافذة «أي مجموعة أجابت؟»
      لتضغطي على لون المجموعة فتُضاف لها النقاط. ويمكن تعديل النقاط يدويًا من زر 🏆
    • pointEach:true داخل شريحة الترتيب أو التصنيف = نقطة للمجموعة بعد كل إجابة صحيحة (وليس في النهاية فقط).
@@ -608,18 +856,28 @@ body.idle #hint{opacity:0}
 
 const LESSON = {
   title:    'الأمن السيبراني',
-  lessonNo: 'الدرس الثالث – الجزء الأول',
-  subject:  'التقنية الرقمية',
-  teacher:  '',
+  lessonNo: 'الدرس الثالث',
+  subject:  'التقنية الرقمية 3',
+  teacher:  'أ. شهد العتيبي',
   school:   '',
   // 🏆 المجموعات الست المتنافسة (الاسم + الرمز + اللون)
   teams: [
-    { name:'الدرع',   icon:'🛡️', color:'#7C3AED' },  // بنفسجي
-    { name:'المفتاح', icon:'🔑', color:'#EC4899' },  // وردي
-    { name:'الشيفرة', icon:'💻', color:'#14B8A6' },  // فيروزي
-    { name:'الرادار', icon:'📡', color:'#F97316' },  // برتقالي
-    { name:'القفل',   icon:'🔒', color:'#3B82F6' },  // أزرق
-    { name:'البوصلة', icon:'🧭', color:'#22C55E' }   // أخضر
+    { name:'السيبرانيات', icon:'🛡️', color:'#7C3AED' },  // بنفسجي
+    { name:'المبرمجات',  icon:'💻', color:'#EC4899' },  // وردي
+    { name:'الروبوتيات', icon:'🤖', color:'#14B8A6' },  // فيروزي
+    { name:'المبتكرات',  icon:'💡', color:'#F97316' },  // برتقالي
+    { name:'الرادار',    icon:'📡', color:'#3B82F6' },  // أزرق
+    { name:'الهاكرز',    icon:'🕵️‍♀️', color:'#22C55E' }   // أخضر
+  ],
+  // 🎡 أسماء الطالبات لعجلة الأسماء (الفصل ثالث ٤ — من ملف الإكسل في المجلد)
+  students: [
+    'اجوان بنت سعيد بن العلوي الزهراني','أسيف رشدان الجهنى','اليان ايمن الفارسي','ايمان محمد بن الفراقين القرني','تالا خالد الزهراني',
+    'تالين بندر الغامدي','تولين محمد عريشي','جنا بنت محمد بن الصالحي','جنى علي الرشيدي','جوان احمد فرج',
+    'جود علي المنتشري','جود محمد فلقي','داليا يحي الشهري','ربى حمد المحوري','رسيل محمد ابراهيم',
+    'رنا ياسر نهارى','سديم عبدالعزيز المحاميد','سديم علي قديمي','سلاف صالح الجدعاني','سوسن سالم الغامدي',
+    'غلا صالح الجدعاني','غنى موسى القرني','فجر خالد فلاته','لجين خاتم بن المعافي المالكي','لجين عبدالله الشريف',
+    'لين حسن الجدعاني','لينا موسي محرق','ندى نوار الجدعاني','هيا جابر الامير','هيا هاشم المحديني',
+    'يارا احمد الصمداني'
   ],
   defaultPoints: 1   // النقاط الافتراضية لكل إجابة صحيحة (ويمكن وضع points:2 داخل أي شريحة)
 };
@@ -634,70 +892,40 @@ const MSG = {
 
 const SLIDES = [
 
-  /* 1) عنوان: مراجعة ما سبق دراسته */
-  { type:'section', anim:'zoom', icon:'🔁', title:'مراجعة ما سبق دراسته', subtitle:'لنتذكّر معًا ما تعلّمناه في الدرس السابق 💭' },
+  /* 1) الغلاف: دورة حياة النظام */
+  { type:'cover', anim:'zoom', image:'assets/cover.jpg',
+    title:'دورة حياة النظام', subject:'التقنية الرقمية 3', chapter:'2', chapterLabel:'الفصل الثاني' },
 
-  /* 2) مراجعة الدرس السابق (1) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (1 من 6)', anim:'fade', noPoints:true,
-    question:'وصف تفصيلي لجميع عمليات ومراحل تصميم النظام بشكل مكتوب وموثّق',
-    options:[
-      { icon:'📊', t:'التقييم' },
-      { icon:'📑', t:'التوثيق' },
-      { icon:'📝', t:'التحليل' }
-    ],
-    answer:1 },
+  /* 2) شريط الذكريات: مراجعة الدرس السابق */
+  { type:'filmstrip', tag:'🎞️ شريط الذكريات', title:'مراجعة الدرس السابق',
+    frames:[
+      { icon:'🔁', t:'مراجعة الدرس السابق', color:'#7C3AED', kind:'intro',
+        h:'مراجعة الدرس السابق', p:'لنتذكّر معًا ما تعلّمناه في درس «إنشاء المخطط» 💭 اضغطي على الصورة التالية في الشريط' },
+      { icon:'✔️✖️', t:'صح أم خطأ؟', color:'#EC4899', kind:'tf',
+        items:[
+          { t:'المخططات هي تمثيل نصي للمعلومات باستخدام الأشكال والأسهم لعرض الترتيبات والعلاقات المختلفة بينها.', a:false, why:'خطأ: المخططات تمثيل <b>مرئي</b> للمعلومات وليس نصيًا.' },
+          { t:'يعد التمثيل المرئي للمعلومات باستخدام المخططات أكثر فعالية من الوصف النصي.', a:true, why:'صح: التمثيل المرئي أوضح وأسرع فهمًا من الوصف النصي.' }
+        ] },
+      { icon:'🧩', t:'اختاري الإجابة', color:'#14B8A6', kind:'mcq',
+        question:'هو تمثيل مرئي لإطار موقع إلكتروني أو تطبيق ذكي:',
+        options:[
+          { icon:'أ', t:'مخطط حالة الاستخدام' },
+          { icon:'ب', t:'مخطط سير العمل' },
+          { icon:'ج', t:'المخطط الهيكلي' },
+          { icon:'د', t:'مخطط الشجرة' }
+        ],
+        answer:2 }
+    ] },
 
-  /* 3) مراجعة الدرس السابق (2) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (2 من 6)', anim:'fade', noPoints:true,
-    question:'تحديد المشكلة التي تحتاج إلى حل',
-    options:[
-      { icon:'🎨', t:'التصميم' },
-      { icon:'🧪', t:'التطوير والاختبار' },
-      { icon:'📝', t:'التحليل' }
-    ],
-    answer:2 },
+  /* 3) أين نحن؟ دروس الفصل الثاني */
+  { type:'lessons', tag:'🗺️ أين نحن؟', title:'الفصل الثاني: دورة حياة النظام',
+    lessons:[
+      { n:'الدرس الأول',  icon:'🔄', t:'دورة حياة النظام', state:'done' },
+      { n:'الدرس الثاني', icon:'📊', t:'إنشاء المخطط',     state:'done' },
+      { n:'الدرس الثالث', icon:'🛡️', t:'الأمن السيبراني',  state:'now' }
+    ] },
 
-  /* 4) مراجعة الدرس السابق (3) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (3 من 6)', anim:'fade', noPoints:true,
-    question:'معالجة المشكلة أولًا بأول لضمان كفاءة النظام',
-    options:[
-      { icon:'🎨', t:'التصميم' },
-      { icon:'📊', t:'التقييم' },
-      { icon:'📝', t:'التحليل' }
-    ],
-    answer:1 },
-
-  /* 5) مراجعة الدرس السابق (4) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (4 من 6)', anim:'fade', noPoints:true,
-    question:'تحسين ورفع جودة وظائف النظام بناءً على التغذية الراجعة من المستخدمين',
-    options:[
-      { icon:'🎨', t:'التصميم' },
-      { icon:'🔧', t:'الصيانة' },
-      { icon:'🚀', t:'التنفيذ' }
-    ],
-    answer:1 },
-
-  /* 6) مراجعة الدرس السابق (5) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (5 من 6)', anim:'fade', noPoints:true,
-    question:'يُستخدم في وصف الهيكل التنظيمي لمؤسسة ما',
-    options:[
-      { icon:'🔀', t:'مخطط سير العمل' },
-      { icon:'🌳', t:'مخطط الشجرة' },
-      { icon:'👥', t:'مخطط حالة الاستخدام' }
-    ],
-    answer:1 },
-
-  /* 7) مراجعة الدرس السابق (6) */
-  { type:'mcq', tag:'🔁 مراجعة الدرس السابق', title:'ما المصطلح المناسب؟ (6 من 6)', anim:'fade', noPoints:true,
-    question:'تمثّل الطرق المختلفة التي قد يتفاعل بها المستخدم مع النظام',
-    options:[
-      { icon:'🔀', t:'مخطط سير العمل' },
-      { icon:'🌳', t:'مخطط الشجرة' },
-      { icon:'👥', t:'مخطط حالة الاستخدام' }
-    ],
-    answer:2 },
-
-  /* 8) تمهيد بموقف واقعي — ماذا تتوقعين؟ */
+  /* 4) تمهيد بموقف واقعي + الفيديو التمهيدي */
   { type:'mcq', tag:'🔮 تمهيد: ماذا ستفعلين؟', title:'موقف حقيقي… يحدث كل يوم',
     scene:`<div class="phone"><div class="sms-head">📩 رسالة جديدة • رقم غير معروف</div>
             <div class="sms">🎉 مبروك! تم اختيار رقمك للفوز بجائزة <b>5000 ريال</b> 🎁<br>لاستلامها أدخلي بيانات بطاقتك البنكية خلال <b>10 دقائق</b> فقط ⏳
@@ -710,53 +938,74 @@ const SLIDES = [
       { icon:'💬', t:'أرد وأسأل: من أنت؟' }
     ],
     answer:2,
-    explain:'هذا <b>احتيال إلكتروني</b> 🎣 يعتمد على الاستعجال والإغراء. درس اليوم سيعلّمكِ كيف تحمين نفسكِ وأنظمتكِ.' },
+    explain:'هذا <b>احتيال إلكتروني</b> 🎣 يعتمد على الاستعجال والإغراء. درس اليوم سيعلّمكِ كيف تحمين نفسكِ وأنظمتكِ.',
+    video:'intro.mp4' },
 
-  /* 9) فيديو تمهيدي */
-  { type:'video', tag:'🎬 شاهدي وتأمّلي', title:'فيديو تمهيدي', anim:'fade',
-    src:'intro.mp4', autoplay:true },
-
-  /* 10) الشريحة الترحيبية */
-  { type:'title', anim:'zoom',
-    subtitle:'مهمتكِ اليوم: أن تفكّري كـ <b>محللة أمن سيبراني</b> 🕵️‍♀️ تحمي البيانات وتكشف التهديدات' },
-
-  /* 11) أهداف الدرس */
-  { type:'objectives', tag:'🎯 أهداف الدرس', title:'بنهاية هذه المهمة ستكونين قادرة على:',
+  /* 5) الأهداف العامة */
+  { type:'objectives', tag:'🎯 الأهداف العامة', title:'الأهداف العامة للدرس',
     goals:[
-      { icon:'🔄', t:'توضيح كيفية دمج الأمن السيبراني في مراحل دورة حياة النظام' },
-      { icon:'👣', t:'تصنيف البصمة الرقمية إلى نشطة وغير نشطة' },
-      { icon:'🧱', t:'التمييز بين وظيفة جدار الحماية ووظيفة مكافحة الفيروسات' }
+      { icon:'🛡️', t:'مفهوم الأمن السيبراني' },
+      { icon:'🔄', t:'خطوات دمج الأمن السيبراني في دورة حياة النظام' },
+      { icon:'👣', t:'مفهوم البصمة الرقمية Digital Footprint' },
+      { icon:'🗂️', t:'البيانات المسجلة أثناء استخدام الإنترنت' }
     ],
-    hint:'اضغطي على الهدف عند تحقّقه في نهاية الدرس ✓' },
+    hint:'اضغطي على الهدف عند الانتهاء منه لوضع علامة ✓' },
 
-  /* 12) العصف الذهني */
+  /* 6) نواتج التعلم */
+  { type:'outcomes', tag:'🏁 نواتج التعلم', title:'في نهاية الدرس ستكونين قادرة على أن:',
+    items:[
+      '<b>تتعرفي</b> على مفهوم الأمن السيبراني',
+      '<b>تشرحي</b> خطوات دمج الأمن السيبراني في دورة حياة النظام',
+      '<b>تتعرفي</b> على مفهوم البصمة الرقمية Digital Footprint',
+      '<b>تصنّفي</b> البصمة الرقمية',
+      '<b>تميّزي</b> بين البصمة الرقمية النشطة وغير النشطة',
+      '<b>تذكري</b> الطرق التي تؤثر بها البصمة الرقمية على دورة حياة النظام',
+      '<b>تتعرفي</b> على آثار التعقب الرقمية',
+      '<b>تذكري</b> أنواع آثار التعقب الرقمية',
+      '<b>تشرحي</b> البيانات المسجلة أثناء استخدام الإنترنت'
+    ] },
+
+  /* 7) استراتيجية البحث: معنى كلمة سيبراني */
+  { type:'research', tag:'🔎 استراتيجية البحث', title:'ما معنى كلمة «سيبراني»؟',
+    meaning:'معنى كلمة <b>سيبراني</b>: مأخوذة من كلمة <b>Cyber</b> وهي كلمة <b>معرّبة</b>.',
+    task:'طالبتي الباحثة 🕵️‍♀️ افتحي <b>ChatGPT</b> وابحثي عن معنى كلمة «<b>Cyber</b>»، وعن معنى كلمة «<b>معرّبة</b>».',
+    link:'https://chatgpt.com',
+    chats:[
+      { btn:'🔍 ابحثي عن «Cyber»', q:'ما معنى كلمة Cyber؟',
+        a:'<b>Cyber</b> كلمة إنجليزية أصلها يوناني (kybernetes) بمعنى «الموجِّه أو القائد»، والمراد بها اليوم <b>الفضاء الإلكتروني</b>: كل ما يتعلق بالأجهزة الرقمية وأنظمة التشغيل والبرمجيات والشبكات والمستخدمين.' },
+      { btn:'🔍 ابحثي عن «معرّبة»', q:'ما معنى كلمة معرّبة؟',
+        a:'<b>الكلمة المعرّبة</b>: كلمة أجنبية الأصل نقلها العرب إلى لغتهم بعد تعديل حروفها ونطقها لتوافق أوزان العربية، مثل: <b>سيبراني</b> من Cyber، و<b>تلفاز</b>، و<b>دِرهم</b>.' }
+    ] },
+
+  /* 8) العصف الذهني */
   { type:'brainstorm', tag:'🧠 العصف الذهني', title:'ماذا تعرفين مسبقًا؟',
     prompt:'ما الكلمات التي تخطر ببالكِ عند سماع «الأمن السيبراني»؟ 💭',
     center:'الأمن<br>السيبراني',
-    seconds:120,
+    seconds:90,
     suggestions:['حماية البيانات','كلمات المرور','الاختراق','الفيروسات','الخصوصية','جدار الحماية','الاحتيال','التشفير','التحديثات','الهاكرز'] },
 
-  /* 13) أكملي الفراغ — تعريف الهيئة */
-  { type:'blanks', tag:'🧩 خمّني الكلمة المفقودة', title:'ما هو الأمن السيبراني؟',
+  /* 9) رتّبي الكلمات — تعريف الهيئة */
+  { type:'wordorder', tag:'🧩 رتّبي الكلمات', title:'ما هو الأمن السيبراني؟',
+    prompt:'اضغطي على الكلمات بالترتيب الصحيح لتكملي التعريف 👇',
     source:'تعريف الهيئة الوطنية للأمن السيبراني (NCA):',
     text:'هو حماية [الشبكات] وأنظمة تقنية المعلومات والأنظمة التشغيلية ومكوناتها من [أجهزة] و[برمجيات]، وما تقدمه من خدمات وما تحتويه من [بيانات]، من أي [اختراق] أو تعطيل أو تعديل أو دخول أو استخدام أو استغلال غير مشروع.',
     note:'<span class="ni">🏛️</span><div><b>الهيئة الوطنية للأمن السيبراني</b> تأسست بأمر ملكي، وهي الجهة المختصة والمرجع الوطني في شؤون الأمن السيبراني بالمملكة. ويشمل مفهوم الأمن السيبراني: <b>أمن المعلومات، والأمن الإلكتروني، والأمن الرقمي</b>.</div>' },
 
-  /* 14) ماذا تتوقعين؟ */
+  /* 10) ماذا تتوقعين؟ ترتيب المملكة */
   { type:'mcq', tag:'🔮 ماذا تتوقعين؟', title:'المملكة على خريطة الأمن السيبراني العالمية', anim:'fade',
     scene:`<div class="scene-card"><div class="sc-big">🏆</div><div class="sc-t">المؤشر العالمي<br>للأمن السيبراني</div><div class="sc-s">Global Cybersecurity Index – GCI</div></div>`,
     question:'برأيكِ… ما ترتيب المملكة العربية السعودية في هذا المؤشر (الكتاب السنوي للتنافسية العالمية 2026)؟',
     options:[
+      { icon:'🏅', t:'المركز الثاني' },
       { icon:'🏅', t:'المركز الخامس' },
-      { icon:'🏅', t:'المركز العاشر' },
       { icon:'🏅', t:'المركز الأول' },
-      { icon:'🏅', t:'المركز العشرون' }
+      { icon:'🏅', t:'المركز التاسع' }
     ],
     answer:2,
     explain:'حافظت المملكة على <b>المركز الأول عالميًا</b> 🥇، وصُنّفت ضمن الفئة الأولى <b>«النموذج المحتذى به»</b> في مؤشر الاتحاد الدولي للاتصالات (ITU).' },
 
-  /* 15) بطاقات: مبادرات المملكة */
-  { type:'cards', tag:'🃏 بطاقات الاكتشاف', title:'كيف وصلت المملكة للصدارة؟',
+  /* 11) بطاقات: مبادرات المملكة + عجلة الأسماء */
+  { type:'cards', tag:'🃏 بطاقات الاكتشاف', title:'كيف وصلت المملكة للصدارة؟', wheel:true, h:300,
     cards:[
       { icon:'🎓', title:'التعليم والتدريب', color:'#7C3AED',
         text:'برامج الأكاديمية الوطنية، معسكرات الاتحاد السعودي للأمن السيبراني والبرمجة والدرونز (SAFCSP)، وإطار «سايبر-التعليم».' },
@@ -768,9 +1017,29 @@ const SLIDES = [
         text:'البرنامج الوطني «سايبرك» (CyberIC)، و«التمارين الوطنية السيبرانية»، ومبادرات لفئات المجتمع.' }
     ] },
 
-  /* 16) لعبة الترتيب: دورة حياة النظام */
-  { type:'order', tag:'🧗 تحدي الترتيب', title:'دمج الأمن في دورة حياة النظام', pointEach:true,
-    prompt:'رتّبي مراحل دورة حياة النظام بالضغط عليها بالترتيب الصحيح 👇',
+  /* 12) ربط الدرس بالرياضيات والحساب */
+  { type:'math', tag:'➗ ربط الدرس بالرياضيات والحساب', title:'كم نوفّر إذا أصلحنا الثغرات مبكرًا؟', h:230,
+    problem:'اكتُشفت <b>3 ثغرات أمنية</b> أثناء تصميم نظام. تكلفة إصلاح الثغرة الواحدة الآن <b>10 ريالات</b>، بينما تصبح <b>100 ريال</b> إذا تأجل إصلاحها إلى ما بعد تشغيل النظام. <b>كم نوفّر إذا أصلحنا الثغرات مبكرًا؟</b>',
+    steps:[
+      { icon:'🛠️', t:'الإصلاح المبكر', d:'3 × 10 = 30 ريالًا' },
+      { icon:'⏰', t:'الإصلاح المتأخر', d:'3 × 100 = 300 ريال' },
+      { icon:'💰', t:'التوفير', d:'300 − 30 = 270 ريالًا' }
+    ],
+    link:'كيف ندمج الأمن السيبراني في مراحل دورة حياة النظام لتقليل الثغرات ومعالجتها مبكرًا؟' },
+
+  /* 13) التعليم المتمايز: دمج الأمن في دورة حياة النظام */
+  // المهام بنفس ترتيب المجموعات في LESSON.teams
+  { type:'order', tag:'🧩 استراتيجية التعليم المتمايز', title:'دمج الأمن في دورة حياة النظام', pointEach:true,
+    prompt:'اقرئي المادة العلمية في الكتاب صفحة 92، ثم قومي بدمج الأمن السيبراني في مراحل دورة حياة النظام حسب المرحلة المسندة لمجموعتك (3 دقائق) ⏱️',
+    seconds:180,
+    tasks:[
+      'اشرحي طريقة دمج الأمن السيبراني في مرحلة <b>التحليل</b>.',
+      'ارسمي مخططًا بصريًا لدمج الأمن السيبراني في مرحلة <b>التصميم</b>.',
+      'وضّحي ماذا يحدث إذا لم نراجع التعليمات البرمجية للأمن السيبراني في مرحلة <b>التطوير</b>.',
+      'أجيبي عن الأسئلة الموجودة في ورقتك عن دمج الأمن السيبراني في مرحلة <b>التنفيذ</b>.',
+      'فسّري كيف يتم ضبط الضوابط الأمنية السيبرانية قبل نشر النظام في مرحلة <b>التنفيذ</b>.',
+      'اكتبي تقريرًا عن دمج الأمن السيبراني في مرحلة <b>الصيانة</b>.'
+    ],
     items:[
       { icon:'📝', t:'التحليل',     en:'Analysis',       info:'<b>التحليل:</b> تحديد متطلبات الأمن السيبراني وتوثيقها منذ البداية.' },
       { icon:'🎨', t:'التصميم',     en:'Design',         info:'<b>التصميم:</b> دمج ضوابط الأمن في التصميم ليكون النظام مرنًا أمام الهجمات.' },
@@ -780,8 +1049,8 @@ const SLIDES = [
       { icon:'🔧', t:'الصيانة',     en:'Maintenance',    info:'<b>الصيانة:</b> تقييمات أمنية منتظمة وتحديث ضوابط الأمان حسب الحاجة.' }
     ] },
 
-  /* 17) سؤال اختيار من متعدد */
-  { type:'mcq', tag:'❓ استراتيجية الأسئلة', title:'سؤال سريع', anim:'fade',
+  /* 14) تقويم تكويني: سؤال اختيار من متعدد */
+  { type:'mcq', tag:'📝 تقويم تكويني', title:'سؤال سريع', anim:'fade',
     question:'في أي مرحلة يُجرى «اختبار الاختراق» ومسح الثغرات الأمنية؟',
     options:[
       { icon:'📝', t:'التحليل' },
@@ -792,7 +1061,19 @@ const SLIDES = [
     answer:2,
     explain:'في مرحلة <b>الاختبارات</b> نحاول «مهاجمة» النظام بطريقة مشروعة لنكتشف الثغرات قبل المخترقين.' },
 
-  /* 18) لاحظي واكتشفي: البصمة الرقمية */
+  /* 15) استراتيجية اكتشاف المغالطة */
+  { type:'fallacy', tag:'🕵️‍♀️ استراتيجية: اكتشاف المغالطة', title:'اكتشفي الخطأ… وصحّحيه',
+    act:{ n:2, time:'1 د', kind:'فردي', goal:'أن تشرح الطالبة كيفية دمج الأمن السيبراني في دورة حياة النظام' },
+    prompt:'طالبتي الرائعة، وضّحي الخطأ في العبارات التالية مع تصحيحه ✏️',
+    seconds:60,
+    items:[
+      { wrong:'في مرحلة [التنفيذ] يجب تحديد وتوثيق متطلبات الأمن السيبراني، حيث سيساعد ذلك على تأكيد إنشاء النظام بأقصى درجات الأمان.',
+        fix:'في مرحلة <b>التحليل</b> يجب تحديد وتوثيق متطلبات الأمن السيبراني، حيث سيساعد ذلك على تأكيد إنشاء النظام بأقصى درجات الأمان.' },
+      { wrong:'يعد دمج الأمن السيبراني في دورة حياة النظام أمرًا [اختياريًا] لكون النظام آمنًا ومحميًا من التهديدات المختلفة.',
+        fix:'يعد دمج الأمن السيبراني في دورة حياة النظام أمرًا <b>مهمًا</b> لضمان كون النظام آمنًا ومحميًا من التهديدات المختلفة.' }
+    ] },
+
+  /* 16) لاحظي واكتشفي: البصمة الرقمية */
   { type:'footprints', tag:'🔍 لاحظي واكتشفي', title:'ماذا تتركين خلفكِ على الإنترنت؟',
     prompt:'اختاري ما فعلتِه خلال الأسبوع الماضي، وراقبي ماذا يحدث 👀',
     actions:[
@@ -807,7 +1088,7 @@ const SLIDES = [
     ],
     reveal:'هذه هي <b>البصمة الرقمية (Digital Footprint)</b>: أثر تتركينه عند كل عمل أو تصفح عبر الإنترنت، وقد يتمكن الآخرون من رؤيته وتحليله.' },
 
-  /* 19) تصنيف: نشطة أم غير نشطة */
+  /* 17) تصنيف: نشطة أم غير نشطة */
   { type:'sort', tag:'🗂️ صنّفي', title:'البصمة الرقمية: نشطة أم غير نشطة؟', pointEach:true,
     prompt:'هل تُركت هذه البصمة <b>بإرادتكِ</b> أم <b>دون قصد</b>؟ اضغطي على العمود المناسب',
     buckets:[
@@ -825,9 +1106,36 @@ const SLIDES = [
       { icon:'🔎', t:'موقع يسجّل عمليات بحثك', b:'p' }
     ] },
 
-  /* 20) بطاقات: تأثير البصمة على دورة حياة النظام */
-  { type:'cards', tag:'🃏 بطاقات الاكتشاف', title:'كيف تؤثر البصمة الرقمية على الأنظمة والمؤسسات؟',
-    subtitle:'قبل قلب البطاقة: توقّعي ماذا تعني كل كلمة 🤔',
+  /* 18) استراتيجية القراءة الفعالة */
+  { type:'activity', tag:'📖 استراتيجية: القراءة الفعالة', title:'كيف يتم تخزين بصمتي الرقمية؟',
+    act:{ n:3, time:'2 د', kind:'جماعي', goal:'أن توضّح الطالبة كيف تُحفظ البصمة الرقمية' },
+    read:'طالبتي العزيزة، اقرئي المادة العلمية في الكتاب <b>صفحة 93</b>، ثم أجيبي عن السؤال التالي:',
+    question:'كيف يتم تخزين بصمتي الرقمية؟',
+    answer:'تُحفظ البصمة الرقمية على شكل <b>ملف</b> يشمل البيانات التي تخص المستخدم، والتي يتم جمعها كنتيجة <b>للتصفح والاتصالات والأعمال الأخرى</b> التي يقوم بها المستخدم.',
+    seconds:120 },
+
+  /* 19) ربط بالدين والحياة: المناقشة والحوار */
+  { type:'activity', tag:'🌿 ربط بالدين والحياة • المناقشة والحوار', title:'بصمتي الرقمية… أثر يبقى',
+    act:{ n:4, time:'2 د', kind:'جماعي', goal:'إعطاء أمثلة للبصمة الرقمية (مهارات تفكير عليا)' },
+    hadiths:[
+      { t:'عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ</mark>: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ»', src:'رواه مسلم (1631)' },
+      { t:'وعَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>مَنْ دَعَا إِلَى هُدًى، كَانَ لَهُ مِنَ الْأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ</mark>، لَا يَنْقُصُ ذَلِكَ مِنْ أُجُورِهِمْ شَيْئًا»', src:'رواه مسلم (2674)' }
+    ],
+    question:'طالبتي الرقمية… كيف يمكنني جعل بصماتي الرقمية النشطة إيجابية؟',
+    answers:['📚 نشر العلم النافع','🤲 الدعوة إلى الخير والقيم','💬 التعليق بلطف واحترام','✅ مشاركة محتوى موثوق','🤝 دعم المبادرات التطوعية','🚫 عدم نشر الشائعات'],
+    seconds:120 },
+
+  /* 20) استراتيجية حل المشكلة */
+  { type:'activity', tag:'🧠 استراتيجية حل المشكلة', title:'ماذا فعل فهد؟',
+    act:{ n:2, time:'5 د', kind:'جماعي', goal:'البصمة الرقمية' },
+    story:{ icon:'👨‍💼', t:'شارك «فهد» الموظف في شركة عالمية معلومات حساسة عن الشركة <b>عن غير قصد</b> على وسائل التواصل الاجتماعي.' },
+    question:'كيف ستتأثر هذه الشركة بسبب ما فعله فهد؟',
+    answer:'قد يستغل مجرمو الإنترنت هذه المعلومات لشنّ <b>هجمات مستهدفة</b> على الشركة وأنظمتها (أخطار أمنية)، وقد تتضرر <b>سمعة الشركة</b> وثقة عملائها، وقد تتعرض لـ<b>غرامات</b> لعدم الالتزام بقوانين حماية البيانات.',
+    seconds:300 },
+
+  /* 21) بطاقات: تأثير البصمة على الأنظمة + عجلة الأسماء */
+  { type:'cards', tag:'🃏 بطاقات الاكتشاف', title:'كيف تؤثر البصمة الرقمية على الأنظمة والمؤسسات؟', wheel:true, h:290,
+    subtitle:'اقرئي إحدى البطاقات 📖',
     cards:[
       { icon:'🚨', title:'الأخطار الأمنية', color:'#F43F5E',
         text:'موظف يشارك معلومات حساسة دون قصد، فيستغلها مجرمو الإنترنت لشنّ هجوم على المنظمة.' },
@@ -839,7 +1147,33 @@ const SLIDES = [
         text:'مراقبة البصمة الرقمية بانتظام عبر وسائل التواصل والمنصات لاكتشاف الأخطار مبكرًا.' }
     ] },
 
-  /* 21) كشف تدريجي: آثار التعقب الرقمية */
+  /* 22) حددي التأثير (1) */
+  { type:'mcq', tag:'💬 استراتيجية: المناقشة والحوار', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
+    act:{ n:5, time:'3 د', kind:'جماعي', goal:'استنتاج الطريقة التي تؤثر بها البصمة على دورة حياة النظام' },
+    question:'شارك الموظف معلومات حساسة عن النظام من غير قصد على وسائل التواصل الاجتماعي، وتم استخدام هذه المعلومات في هجوم احتيالي على المنظمة.',
+    options:[
+      { icon:'🚨', t:'الأخطار الأمنية Security Risks' },
+      { icon:'⭐', t:'إدارة السمعة Reputation' },
+      { icon:'⚖️', t:'التوافق Compliance' },
+      { icon:'📡', t:'المراقبة Monitoring' }
+    ],
+    answer:0,
+    explain:'استغلال معلومات منشورة لشنّ هجوم على النظام هو من <b>الأخطار الأمنية</b>.' },
+
+  /* 23) حددي التأثير (2) */
+  { type:'mcq', tag:'💬 استراتيجية: المناقشة والحوار', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
+    act:{ n:5, time:'3 د', kind:'جماعي', goal:'استنتاج الطريقة التي تؤثر بها البصمة على دورة حياة النظام' },
+    question:'خسرت شركة خطوط الطيران (United Airlines) أكثر من مليار دولار من قيمتها السوقية بعد أن انتشر مقطع فيديو لراكب أُجبر بعنف على الابتعاد عن رحلة مكتظة. حصل الفيديو على أكثر من مليون إشارة في اليوم وأكثر من 100 مليون مشاهدة.',
+    options:[
+      { icon:'🚨', t:'الأخطار الأمنية Security Risks' },
+      { icon:'⭐', t:'إدارة السمعة Reputation' },
+      { icon:'⚖️', t:'التوافق Compliance' },
+      { icon:'📡', t:'المراقبة Monitoring' }
+    ],
+    answer:1,
+    explain:'انتشار المحتوى السلبي أثّر على صورة الشركة وقيمتها، وهذا من <b>إدارة السمعة</b>.' },
+
+  /* 24) كشف تدريجي: آثار التعقب الرقمية */
   { type:'reveal', tag:'👀 اكشفي', title:'آثار التعقب الرقمية (Digital Traces)', h:330,
     qIcon:'🧐', question:'كل نشاط لكِ يترك «آثارًا» تكوّن بصمتك… تنقسم إلى نوعين، ما هما؟',
     items:[
@@ -847,8 +1181,8 @@ const SLIDES = [
       { icon:'🕶️', t:'آثار غير مقصودة وغير مرئية', d:'سجلات زيارات المواقع، عمليات البحث، سجلات تحركاتك على الإنترنت وتواصلك مع الآخرين.' }
     ] },
 
-  /* 22) قيمة دينية: ونكتب ما قدّموا وآثارهم */
-  { type:'value', tag:'🌿 قيمة دينية', title:'آثارنا… مكتوبة', anim:'fade', h:250,
+  /* 25) قيمة دينية وربط باللغة العربية */
+  { type:'value', tag:'🌿 آثارنا… مكتوبة', title:'قيمة دينية وربط باللغة العربية', anim:'fade', h:250,
     verse:'إِنَّا نَحْنُ نُحْيِي الْمَوْتَىٰ <mark>وَنَكْتُبُ مَا قَدَّمُوا وَآثَارَهُمْ</mark> ۚ وَكُلَّ شَيْءٍ أَحْصَيْنَاهُ فِي إِمَامٍ مُّبِينٍ',
     source:'سورة يس – الآية 12',
     items:[
@@ -858,7 +1192,22 @@ const SLIDES = [
     ],
     tip:'🤍 قبل أن تنشري أو تعلّقي… اسألي نفسك: هل أرضى أن يُكتب هذا في صحيفتي؟' },
 
-  /* 23) محاكاة سجل الخادم */
+  /* 26) تقويم تكويني: صنّفي آثار التعقب */
+  { type:'sort', tag:'📝 تقويم تكويني', title:'صنّفي آثار التعقب الرقمية', pointEach:true,
+    prompt:'هل هذا الأثر <b>مقصود ومرئي</b> أم <b>غير مقصود وغير مرئي</b>؟ اضغطي على العمود المناسب',
+    buckets:[
+      { key:'v', label:'مقصودة ومرئية',        icon:'👁️', color:'#7C3AED' },
+      { key:'i', label:'غير مقصودة وغير مرئية', icon:'🕶️', color:'#EC4899' }
+    ],
+    items:[
+      { icon:'📧', t:'رسائل البريد الإلكتروني', b:'v' },
+      { icon:'🌐', t:'سجلات زيارات المواقع وعمليات البحث وتحركات المستخدم على الإنترنت', b:'i' },
+      { icon:'📸', t:'مشاركات المدونات وتويتر والإعجابات على فيسبوك والصور', b:'v' },
+      { icon:'📞', t:'عمليات التواصل التي يجريها المستخدم مع الآخرين', b:'i' },
+      { icon:'▶️', t:'التعليقات على مقاطع فيديو يوتيوب', b:'v' }
+    ] },
+
+  /* 27) محاكاة سجل الخادم */
   { type:'terminal', tag:'🔍 لاحظي واكتشفي', title:'ماذا يسجّل الخادم عنكِ في ثانية واحدة؟',
     url:'https://www.cyber-school.sa/lesson',
     pageText:'اضغطي لزيارة الموقع وراقبي الشاشة السوداء 👉',
@@ -875,147 +1224,29 @@ const SLIDES = [
     question:'ماذا نسمي هذا الملف؟ ومن يستطيع رؤيته؟',
     answer:'هذه <b>سجلات الخادم (Server Logs)</b>: تُضاف إليها بيانات في كل زيارة، ولا يراها إلا <b>مالك الموقع</b>… وقد تُتتبَّع زياراتك بصمت دون علمك 🤫' },
 
-  /* 24) فكّري – زاوجي – شاركي */
-  { type:'tps', tag:'👭 فكّري – زاوجي – شاركي', title:'قضية للنقاش',
-    question:'📸 نشرت إحدى الطالبات صورة من نافذة غرفتها، والتطبيق يضيف موقعها تلقائيًا. ما المعلومات التي قد يعرفها الغرباء؟ ومن أين تجمع الشركات معلوماتنا؟',
-    phases:[
-      { icon:'🤔', name:'فكّري',  desc:'دوّني أفكاركِ بصمت',          sec:60,  color:'#7C3AED' },
-      { icon:'👭', name:'زاوجي',  desc:'ناقشي زميلتكِ واتفقا',        sec:90,  color:'#EC4899' },
-      { icon:'📢', name:'شاركي',  desc:'اعرضا أقوى فكرة على الفصل',   sec:120, color:'#14B8A6' }
-    ],
-    answers:['📍 الموقع الجغرافي (GPS)','🏠 الحي وشكل المنزل','⏰ أوقات التواجد','✍️ ما ندخله بأنفسنا: الاسم والبريد والجوال','📶 نقاط الواي فاي المحيطة','📰 مصادر عامة وشركاء التسويق'] },
-
-  /* 25) كشف: مخاطر تداول البيانات */
-  { type:'reveal', tag:'⚠️ ماذا يحدث لبياناتي؟', title:'مخاطر تداول البيانات الشخصية', h:300,
-    qIcon:'💭', question:'بياناتك تنتقل وتُخزَّن في أماكن كثيرة… ما الذي قد يترتب على ذلك؟',
-    items:[
-      { icon:'📶', t:'عبور شبكات قابلة للاختراق', d:'قد تُعترض البيانات أثناء انتقالها.' },
-      { icon:'🗄️', t:'قواعد بيانات قد تُسرق', d:'أو تُباع لجهات أخرى.' },
-      { icon:'📱', t:'الحفظ على الأجهزة', d:'الأقراص والهواتف قد يصل إليها آخرون.' },
-      { icon:'🏢', t:'إتاحتها لجهات متعددة', d:'باحثون، سلطات، محاكم، وشركات تسويق.' }
-    ] },
-
-  /* 26) مقارنة: جدار الحماية ومكافحة الفيروسات */
-  { type:'compare', tag:'⚖️ قارني', title:'جدار الحماية 🆚 مكافحة الفيروسات',
-    cols:[
-      { icon:'🧱', name:'جدار الحماية', color:'#7C3AED', analogy:'مثل حارس بوابة المدرسة 💂‍♀️' },
-      { icon:'🩺', name:'مكافحة الفيروسات', color:'#14B8A6', analogy:'مثل العيادة التي تفحص وتعالج 💊' }
-    ],
-    rows:[
-      { k:'الوظيفة',       a:'يراقب حركة مرور الشبكة ويتحكم فيها',   b:'يكتشف البرامج الضارة ويمنعها ويزيلها' },
-      { k:'الهدف',         a:'يمنع المتسللين والوصول غير المصرح به', b:'يحمي من الفيروسات والديدان وأحصنة طروادة' },
-      { k:'النوع',         a:'أجهزة أو برمجيات',                      b:'برمجيات دائمًا' },
-      { k:'المسح الضوئي',  a:'لا يفحص الملفات والبرامج',               b:'يفحص الملفات بحثًا عن توقيعات البرامج الضارة' },
-      { k:'التوافق',       a:'قد يتعارض مع برامج أمان أخرى',            b:'متوافق مع معظم برامج الأمان' }
-    ] },
-
-  /* 27) تصنيف: من المسؤول؟ */
-  { type:'sort', tag:'🕵️‍♀️ من المسؤول؟', title:'مَن يتصدّى لهذا التهديد؟', pointEach:true,
-    prompt:'اقرئي الموقف، ثم حدّدي أداة الحماية المسؤولة عنه',
-    buckets:[
-      { key:'f', label:'جدار الحماية',     icon:'🧱', color:'#7C3AED' },
-      { key:'v', label:'مكافحة الفيروسات', icon:'🩺', color:'#14B8A6' }
-    ],
-    items:[
-      { icon:'👤', t:'جهاز غريب يحاول الدخول إلى حاسبك عبر الشبكة', b:'f' },
-      { icon:'💾', t:'فلاش ميموري يحتوي على ملف مصاب بفيروس', b:'v' },
-      { icon:'🚦', t:'مراقبة حركة مرور الشبكة حسب قواعد أمان محددة', b:'f' },
-      { icon:'🐴', t:'إزالة «حصان طروادة» من جهاز الحاسب', b:'v' },
-      { icon:'🚫', t:'منع المتسللين من الوصول إلى النظام', b:'f' },
-      { icon:'🔬', t:'فحص الملفات بحثًا عن سلوكيات البرامج الضارة', b:'v' }
-    ] },
-
-  /* 28) سؤال تحدٍّ مع كشف */
-  { type:'reveal', tag:'🤔 سؤال تحدٍّ', title:'هل جدار الحماية يحميني من كل شيء؟', h:300,
-    qIcon:'🧱', question:'جدار الحماية وحده لا يكفي! ما التهديدات التي لا يحمي منها؟',
-    items:[
-      { icon:'🎣', t:'الاحتيال الإلكتروني', d:'رسائل ومواقع تخدعك لتسليم بياناتك.' },
-      { icon:'📢', t:'الإعلانات المنبثقة', d:'نوافذ مزعجة قد تحمل روابط خطرة.' },
-      { icon:'📧', t:'البريد غير المرغوب فيه', d:'رسائل عشوائية مزعجة (Spam).' }
-    ] },
-
-  /* 29) كلمة ولي العهد */
-  { type:'quote', tag:'🇸🇦 كلمة ملهمة', title:'رؤية القيادة للأمن السيبراني', anim:'fade',
-    image:'MBS.jpg',
-    name:'صاحب السمو الملكي الأمير محمد بن سلمان بن عبد العزيز',
-    by:'ولي العهد نائب رئيس مجلس الوزراء وزير الدفاع<br>كلمته في قمة العشرين 2019 – اليابان',
-    text:'«نحن نعيش في زمن الابتكارات العلمية والتقنية غير المسبوقة، وآفاق النمو غير المحدودة، ويمكن لهذه التقنيات الجديدة مثل الذكاء الاصطناعي وإنترنت الأشياء، في حال تم استخدامها على النحو الأمثل، أن تجلب للعالم فوائد ضخمة، وفي الوقت ذاته فقد ينتج عن هذه الابتكارات تحديات جديدة مثل تغير أنماط العمل والمهارات اللازمة للتأقلم مع مستقبل العمل وكذلك <b>زيادة مخاطر الأمن السيبراني وتدفق المعلومات</b> مما يستوجب علينا معالجة هذه التحديات في أقرب وقت لتفادي تحولها إلى أزمات اقتصادية واجتماعية.»' },
-
-  /* 30) سؤال */
-  { type:'mcq', tag:'❓ اختاري الإجابة الصحيحة', title:'موقف تقني', anim:'fade',
-    question:'ثبّتِ برنامج مكافحة فيروسات يحتوي على جدار حماية، فطلب منكِ تعطيل جدار حماية ويندوز. لماذا؟',
-    options:[
-      { icon:'🐢', t:'لأن جدار ويندوز بطيء' },
-      { icon:'⚔️', t:'لتجنّب التعارض بين برنامجي الأمان' },
-      { icon:'🗑️', t:'لأن جدار ويندوز لا يعمل' },
-      { icon:'💰', t:'لأن البرنامج الجديد مدفوع' }
-    ],
-    answer:1,
-    explain:'قد يتعارض جدار الحماية مع برامج أمان أخرى. ويحتوي ويندوز على جدار <b>Windows Defender</b> وبرنامج مكافحة فيروسات مجاني هو <b>مايكروسوفت ديفندر</b>.' },
-
-  /* 31) صح أم خطأ */
-  { type:'tf', tag:'✔️✖️ التقييم الفوري: صح أم خطأ؟', title:'قرّري… وبرّري!',
-    items:[
-      { t:'جدار الحماية يحميني من رسائل البريد غير المرغوب فيها.', a:false, why:'خطأ: لا يحمي من البريد المزعج ولا الاحتيال ولا الإعلانات المنبثقة.' },
-      { t:'البصمة الرقمية غير النشطة قد أتركها دون أن أعرف.', a:true, why:'صح: مثل تحديد الموقع وملفات تعريف الارتباط.' },
-      { t:'يكفي دمج الأمن السيبراني في مرحلة التصميم فقط.', a:false, why:'خطأ: يُدمج في جميع مراحل دورة حياة النظام.' },
-      { t:'سجلات الخادم يستطيع أي زائر للموقع رؤيتها.', a:false, why:'خطأ: لا يراها إلا مالك الموقع.' },
-      { t:'جدار الحماية قد يكون جهازًا أو برنامجًا.', a:true, why:'صح: بينما مكافحة الفيروسات برمجيات دائمًا.' }
-    ] },
-
-  /* 32) التعلم التعاوني */
-  // المهام بنفس ترتيب المجموعات في LESSON.teams (المهمة الأولى للمجموعة الأولى… وهكذا)
-  { type:'groups', tag:'🤝 التعلم التعاوني', title:'غرفة العمليات السيبرانية', points:3,
-    prompt:'لكل مجموعة مهمة… اكشفي مهمتكِ ونفّذيها قبل انتهاء الوقت ⏱️ (حتى 3 نقاط)',
-    seconds:180,
-    tasks:[
-      'رتّبن مراحل دورة حياة النظام الست مع إجراء أمني واحد لكل مرحلة.',
-      'اكتبن 3 أمثلة لبصمة نشطة و3 لبصمة غير نشطة من يومكن.',
-      'وضّحن كيف تؤثر البصمة الرقمية على المؤسسات: الأخطار الأمنية، السمعة، التوافق، المراقبة (مثال لكل منها).',
-      'اكتبن 4 معلومات يسجلها الخادم عنكِ عند زيارة موقع، ولماذا يهمكِ ذلك؟',
-      'اذكرن 4 مخاطر لتداول البيانات الشخصية، واقترحن طريقة حماية لكل خطر.',
-      'قارنّ بين جدار الحماية ومكافحة الفيروسات، واذكرن 3 تهديدات لا يحمي منها جدار الحماية.'
-    ] },
-
-  /* 33) تحدي الدقيقة */
-  { type:'challenge', tag:'⚡ تحدي الدقيقة', title:'كم سؤالًا تجيبين في 60 ثانية؟',
-    seconds:60,
+  /* 28) تقويم ختامي: لعبة تفاعلية */
+  { type:'quiz', tag:'🏁 تقويم ختامي', title:'لعبة: مَن تحمي النظام؟', seconds:20,
+    intro:'أسئلة سريعة… لكل سؤال 20 ثانية ⏱️ والمجموعة التي تجيب أولًا تكسب النقطة!',
     questions:[
-      { q:'اذكري مرحلتين من مراحل دورة حياة النظام', a:'التحليل، التصميم، التطوير، الاختبارات، التنفيذ، الصيانة' },
-      { q:'ما اختصار الهيئة الوطنية للأمن السيبراني؟', a:'NCA' },
-      { q:'إلى صنفين تنقسم البصمة الرقمية… ما هما؟', a:'نشطة وغير نشطة' },
-      { q:'مثال على بصمة رقمية غير نشطة؟', a:'تحديد الموقع / ملفات تعريف الارتباط' },
-      { q:'ما البرنامج المجاني لمكافحة الفيروسات في ويندوز؟', a:'مايكروسوفت ديفندر (Microsoft Defender)' },
-      { q:'اذكري تهديدًا لا يحمي منه جدار الحماية', a:'الاحتيال / الإعلانات المنبثقة / البريد المزعج' },
-      { q:'من يستطيع رؤية سجلات الخادم؟', a:'مالك الموقع فقط' },
-      { q:'ما ترتيب المملكة في المؤشر العالمي للأمن السيبراني؟', a:'المركز الأول عالميًا 🥇' },
-      { q:'أيهما يفحص الملفات بحثًا عن البرامج الضارة: الجدار أم المكافحة؟', a:'مكافحة الفيروسات' }
+      { q:'في أي مرحلة يتم تحديد وتوثيق متطلبات الأمن السيبراني؟', o:['التحليل','التصميم','التنفيذ','الصيانة'], a:0 },
+      { q:'اختبار الاختراق ومسح الثغرات الأمنية يكون في مرحلة:', o:['التطوير','الاختبارات','التحليل','التصميم'], a:1 },
+      { q:'تطبيق الضوابط الأمنية للتأكد من أن النظام آمن عند نشره يكون في مرحلة:', o:['الصيانة','التصميم','التنفيذ','التحليل'], a:2 },
+      { q:'إجراء تقييمات أمنية منتظمة وتحديث ضوابط الأمان يكون في مرحلة:', o:['التطوير','الاختبارات','التحليل','الصيانة'], a:3 },
+      { q:'الأثر الذي يتركه كل عمل أو تصفح تقومين به عبر الإنترنت يسمى:', o:['جدار الحماية','البصمة الرقمية','سجل الخادم','التشفير'], a:1 },
+      { q:'نشر صورة على إنستقرام يُعد بصمة رقمية:', o:['نشطة','غير نشطة'], a:0 },
+      { q:'موقع يثبّت ملفات تعريف الارتباط على جهازك دون علمك يُعد بصمة رقمية:', o:['نشطة','غير نشطة'], a:1 },
+      { q:'سجلات زيارات المواقع وعمليات البحث من آثار التعقب:', o:['المقصودة والمرئية','غير المقصودة وغير المرئية'], a:1 },
+      { q:'من يستطيع رؤية سجلات الخادم؟', o:['أي زائر للموقع','مالك الموقع فقط','محركات البحث','جميع المستخدمين'], a:1 },
+      { q:'خسارة شركة بسبب انتشار مقطع سلبي عنها هو تأثير البصمة الرقمية على:', o:['التوافق','المراقبة','إدارة السمعة','الأخطار الأمنية'], a:2 }
     ] },
 
-  /* 34) مراجعة: خريطة الدرس */
-  { type:'review', tag:'🗺️ مراجعة', title:'خريطة الدرس',
-    center:{ icon:'🧠', t:'خريطة الأمن السيبراني', d:'اضغطي على أي فكرة لمراجعتها، واطلبي من زميلتكِ شرحها قبل الضغط!' },
-    nodes:[
-      { icon:'🔄', t:'دورة حياة النظام', color:'#7C3AED', d:'الأمن يُدمج في المراحل الست: التحليل، التصميم، التطوير، الاختبارات، التنفيذ، الصيانة.' },
-      { icon:'🏛️', t:'المملكة والأمن السيبراني', color:'#10B981', d:'الهيئة الوطنية NCA، المركز الأول عالميًا في GCI، ومبادرات مثل سايبرك والتمارين الوطنية.' },
-      { icon:'👣', t:'البصمة الرقمية', color:'#EC4899', d:'نشطة: بإرادتك (منشورات، نماذج). غير نشطة: دون قصد (الموقع، الكوكيز).' },
-      { icon:'🗂️', t:'سجلات الخادم', color:'#0EA5E9', d:'تسجّل IP ووقت الاتصال وطريقة الطلب والملف المطلوب… ولا يراها إلا مالك الموقع.' },
-      { icon:'🧱', t:'جدار الحماية والمكافحة', color:'#F59E0B', d:'الجدار يراقب الشبكة ويمنع المتسللين، والمكافحة تفحص الملفات وتزيل البرامج الضارة.' }
-    ] },
-
-  /* 35) لوحة الصدارة وإعلان الفائز */
-  { type:'leaderboard', tag:'🏆 لحظة الحسم', title:'لوحة الصدارة', anim:'zoom' },
-
-  /* 36) الختام */
-  { type:'closing', anim:'zoom',
-    title:'أنتِ خط الدفاع الأول 🛡️',
-    message:'الأمن السيبراني ليس مهمة المختصين فقط… بل عادة يومية لكل واحدة منا',
-    tips:['🔑 كلمة مرور قوية لكل حساب','🤔 فكّري قبل أن تنشري','🔄 حدّثي برامج الحماية','🚫 لا تضغطي روابط مجهولة','👣 انتبهي لبصمتك الرقمية'],
-    rating:[
-      { e:'😎', m:'رائعة! أنتِ جاهزة لتكوني محللة أمن سيبراني 🛡️' },
-      { e:'🙂', m:'جميل! راجعي خريطة الدرس لتثبيت المعلومات 💜' },
-      { e:'🤔', m:'لا بأس أبدًا! دوّني سؤالكِ وسنراجعه معًا 🌱' }
-    ] }
+  /* 29) الواجب: منصة مدرستي — لوحة النقاش */
+  // لاستبدال الشكل التوضيحي بصورة حقيقية للوحة النقاش: ضعي الصورة في مجلد assets واكتبي مثلًا image:'assets/board.png'
+  { type:'homework', tag:'🏠 الواجب', title:'الواجب في منصة مدرستي – لوحة النقاش',
+    steps:['ادخلي إلى <b>منصة مدرستي</b>','افتحي <b>لوحة النقاش</b> في مقرر التقنية الرقمية 3','أجيبي عن سؤال المعلمة، وردّي على إجابة زميلتين 💬'],
+    book:{ img:'assets/book-p106.png', t:'الكتاب المدرسي صفحة 106 – تدريب 1' },
+    board:{ course:'التقنية الرقمية 3', title:'واجب: البصمة الرقمية',
+      q:'ما نوع البصمة الرقمية الناتجة عن استخدام حساب لينكد إن (LinkedIn)؟ وضّحي إجابتك بمثال.' } }
 ];
 
 /* ==========================================================================
@@ -1194,9 +1425,16 @@ R.mcq = {
       <div class="opts rv">${s.options.map((o,k)=>`<button class="opt" data-k="${k}"><span class="opt-ic">${o.icon||''}</span><span>${o.t}</span></button>`).join('')}</div>
       <div class="feedback"></div>
       ${s.explain?`<div class="explain">💡 ${s.explain}</div>`:''}
-    </div></div>`,
+    </div></div>
+    ${s.video?`<button class="btn primary lg vid-btn mcq-vid rv">🎬 شاهدي الفيديو</button>`:''}
+    ${s.video?`<div class="vid-ov"><div class="video-box"><video src="${s.video}" controls preload="metadata" playsinline></video></div><button class="btn ghost vid-close">✕ إغلاق الفيديو</button></div>`:''}`,
   init:(sec,s)=>{
     const fb=$('.feedback',sec), ex=$('.explain',sec); let done=false;
+    if(s.video){
+      const ov=$('.vid-ov',sec), v=$('video',ov);
+      $('.mcq-vid',sec).onclick=()=>{ ov.classList.add('show'); v.currentTime=0; v.play().catch(()=>{}); };
+      $('.vid-close',sec).onclick=()=>{ v.pause(); ov.classList.remove('show'); };
+    }
     $$('.opt',sec).forEach(b=>b.onclick=()=>{
       if(done) return;
       if(+b.dataset.k===s.answer){
@@ -1261,20 +1499,28 @@ R.blanks = {
 /* بطاقات مقلوبة (تُستخدم أيضًا للمجموعات) */
 function flipInit(sec){ $$('.fc',sec).forEach(c=>c.onclick=()=>{ c.classList.toggle('flipped'); sound.flip(); }); }
 R.cards = {
-  html:s=>`${s.subtitle?`<p class="lead rv">${s.subtitle}</p>`:''}
-    <div class="cards" style="--n:${s.cards.length}">${s.cards.map(c=>`<div class="fc-wrap rv"><button class="fc" style="--c:${c.color||'#7C3AED'}">
+  html:s=>{
+    const cards=`<div class="cards" style="--n:${s.cards.length};${s.h?`--h:${s.h}px`:''}">${s.cards.map(c=>`<div class="fc-wrap rv"><button class="fc" style="--c:${c.color||'#7C3AED'}">
       <div class="fc-face fc-front"><div class="fc-ic">${c.icon}</div><div class="fc-title">${c.title}</div><div class="fc-hint">اضغطي للقلب ↻</div></div>
-      <div class="fc-face fc-back"><div class="fc-title sm">${c.icon} ${c.title}</div><p>${c.text}</p></div></button></div>`).join('')}</div>`,
-  init:flipInit
+      <div class="fc-face fc-back"><div class="fc-title sm">${c.icon} ${c.title}</div><p>${c.text}</p></div></button></div>`).join('')}</div>`;
+    const sub=s.subtitle?`<p class="lead rv">${s.subtitle}</p>`:'';
+    return s.wheel ? `<div class="cards-wheel"><div style="display:flex;flex-direction:column;gap:22px">${sub}${cards}</div><div class="wheel-slot rv"></div></div>` : sub+cards;
+  },
+  init:(sec,s)=>{ flipInit(sec); if(s.wheel) mountWheel($('.wheel-slot',sec)); }
 };
 
 /* لعبة الترتيب */
 R.order = {
-  html:s=>`<p class="lead rv">${s.prompt}</p>
-    <div class="slots rv">${s.items.map((_,k)=>`<div class="slot" data-k="${k}"><span class="slot-n">${k+1}</span></div>`).join('<span class="slot-arrow">←</span>')}</div>
+  html:s=>`${s.seconds?`<div class="ord-top rv"><p class="lead">${s.prompt}</p><div class="timer-slot"></div></div>`:`<p class="lead rv">${s.prompt}</p>`}
+    <div class="slots rv ${s.tasks?'compact':''}">${s.items.map((_,k)=>`<div class="slot" data-k="${k}"><span class="slot-n">${k+1}</span></div>`).join('<span class="slot-arrow">←</span>')}</div>
     <div class="pool rv"></div>
-    <div class="order-info rv"><span class="oi-ic">🛡️</span><p>كل مرحلة تضعينها في مكانها الصحيح ستكشف دور الأمن السيبراني فيها.</p></div>`,
+    <div class="order-info rv ${s.tasks?'sm':''}"><span class="oi-ic">🛡️</span><p>كل مرحلة تضعينها في مكانها الصحيح ستكشف دور الأمن السيبراني فيها.</p></div>
+    ${s.tasks?`<div class="cards grp-mini rv" style="--n:3">${LESSON.teams.map((g,k)=>`<div class="fc-wrap"><button class="fc" style="--c:${g.color}">
+      <div class="fc-face fc-front"><div class="fc-ic">${g.icon}</div><div><div class="fc-title">${g.name}</div><div class="fc-hint">اضغطي لكشف المهمة 🎯</div></div></div>
+      <div class="fc-face fc-back"><p>${s.tasks[k]||''}</p></div></button></div>`).join('')}</div>`:''}`,
   init:(sec,s)=>{
+    if(s.tasks) flipInit(sec);
+    if(s.seconds) mountTimer($('.timer-slot',sec), s.seconds);
     const pool=$('.pool',sec), info=$('.order-info p',sec), slots=$$('.slot',sec); let idx=0;
     let order=s.items.map((_,k)=>k); do{ shuffle(order); }while(order.every((v,i)=>v===i));
     order.forEach(k=>{
@@ -1459,7 +1705,7 @@ R.tf = {
       $$('.tf-b',row).forEach(b=>b.onclick=()=>{
         if((b.dataset.v==='1')===it.a){
           row.classList.add('solved'); b.classList.add('right'); why.className='tf-why show'; why.innerHTML='✓ '+(it.why||MSG.correct);
-          celebrate(b);
+          celebrate(b, s.noPoints);
         } else { shake(row); sound.wrong(); why.className='tf-why show bad'; why.textContent=MSG.wrong; }
       });
     });
@@ -1561,13 +1807,255 @@ R.closing = {
   enter:()=>setTimeout(()=>confetti.rain(),700)
 };
 
+/* الغلاف بصورة خلفية */
+R.cover = {
+  html:s=>`<div class="cover-bg" style="background-image:url('${s.image}')"></div>
+    <div class="cover">
+      <div class="rv"><span class="pill">${s.subject}</span></div>
+      <h1 class="cover-title rv">${s.title}</h1>
+      <div class="cover-chap rv"><b>${s.chapter}</b><span>${s.chapterLabel}</span></div>
+      ${LESSON.teacher?`<div class="cover-teacher rv">معلمة المادة: ${LESSON.teacher}</div>`:''}
+    </div>`
+};
+
+/* شريط الذكريات: صور في شريط فيلم، والضغط على أي صورة يعرض محتواها */
+R.filmstrip = {
+  html:s=>`<div class="film rv">${s.frames.map((f,k)=>`<button class="frame" data-k="${k}" style="--c:${f.color}"><span class="fr-n">${k+1} / ${s.frames.length}</span><span class="fr-ic">${f.icon}</span><span class="fr-t">${f.t}</span></button>`).join('')}</div>
+    <div class="film-panel rv">${s.frames.map(f=>`<div class="fpane">${
+      f.kind==='intro' ? `<div class="fpane-intro"><div class="fi-ic">${f.icon}</div><h3>${f.h}</h3><p>${f.p}</p></div>`
+      : f.kind==='tf' ? R.tf.html(f)
+      : `<div class="q-card"><span class="q-ic">❓</span><p>${f.question}</p></div>
+         <div class="opts">${f.options.map((o,k)=>`<button class="opt" data-k="${k}"><span class="opt-ic">${o.icon||''}</span><span>${o.t}</span></button>`).join('')}</div>
+         <div class="feedback"></div>`
+    }</div>`).join('')}</div>`,
+  init:(sec,s)=>{
+    const frames=$$('.frame',sec), panes=$$('.fpane',sec);
+    s.frames.forEach((f,k)=>{ const cfg={...f,noPoints:true}; if(f.kind==='tf') R.tf.init(panes[k],cfg); else if(f.kind==='mcq') R.mcq.init(panes[k],cfg); });
+    const show=k=>{ frames.forEach((f,j)=>f.classList.toggle('on',j===k)); panes.forEach((p,j)=>p.classList.toggle('on',j===k)); };
+    frames.forEach((f,k)=>f.onclick=()=>{ show(k); sound.flip(); });
+    show(0);
+  }
+};
+
+/* خريطة دروس الفصل */
+R.lessons = {
+  html:s=>`<div class="lessons rv">${s.lessons.map(l=>`<div class="lsn ${l.state||''}">${l.state==='now'?'<span class="ls-badge">📍 درسنا اليوم</span>':''}
+      <div class="ls-n">${l.n}</div><div class="ls-ic">${l.icon}</div><div class="ls-t">${l.t}</div></div>`).join('<span class="ls-link"></span>')}</div>`
+};
+
+/* نواتج التعلم (اضغطي على الناتج عند تحقّقه) */
+R.outcomes = {
+  html:s=>`<div class="outs">${s.items.map((t,k)=>`<div class="rv"><button class="goal"><span class="goal-n">${k+1}</span><span class="goal-t">${t}</span><span class="goal-check">✓</span></button></div>`).join('')}</div>`,
+  init:sec=>R.objectives.init(sec)
+};
+
+/* استراتيجية البحث: محاكاة محادثة مع ChatGPT */
+R.research = {
+  html:s=>`<div class="rs">
+    <div class="rs-side">
+      <div class="def-card rv"><p class="def-text">${s.meaning}</p></div>
+      <div class="rs-task rv"><span class="ni">💻</span><div>${s.task}</div></div>
+      ${s.link?`<a class="btn primary gpt-open rv" href="${s.link}" target="_blank" rel="noopener">🌐 افتحي ChatGPT</a>`:''}
+    </div>
+    <div class="gpt rv">
+      <div class="gpt-head"><span class="gpt-logo">✳</span>ChatGPT<small>chatgpt.com</small></div>
+      <div class="gpt-body"><div class="gpt-empty">بماذا يمكنني مساعدتكِ اليوم؟ 💬</div></div>
+      <div class="gpt-foot">${s.chats.map((c,k)=>`<button data-k="${k}">${c.btn}</button>`).join('')}</div>
+    </div></div>`,
+  init:(sec,s)=>{
+    const body=$('.gpt-body',sec);
+    $$('.gpt-foot button',sec).forEach(b=>b.onclick=()=>{
+      const c=s.chats[+b.dataset.k]; b.disabled=true;
+      const empty=$('.gpt-empty',body); empty&&empty.remove();
+      const u=document.createElement('div'); u.className='gpt-u'; u.textContent=c.q; body.appendChild(u); sound.pop();
+      const a=document.createElement('div'); a.className='gpt-a'; a.innerHTML='<span class="gpt-logo">✳</span><div class="gpt-dots"></div>'; body.appendChild(a);
+      setTimeout(()=>{ a.innerHTML=`<span class="gpt-logo">✳</span><div>${c.a}</div>`; sound.ding(); },1300);
+    });
+  }
+};
+
+/* رتّبي الكلمات: الخيارات فوق التعريف، والضغط عليها بالترتيب يملأ الفراغات */
+R.wordorder = {
+  html:s=>{
+    const words=[...s.text.matchAll(/\[(.+?)\]/g)].map(m=>m[1]);
+    return `<p class="lead rv">${s.prompt}</p>
+    <div class="wo-bank rv">${shuffle(words.map((w,k)=>({w,k}))).map(o=>`<button class="chip-stage" data-w="${o.w}">${o.w}</button>`).join('')}</div>
+    <div class="def-card rv"><div class="def-src">${s.source}</div>
+      <p class="def-text">${s.text.replace(/\[(.+?)\]/g,(_,w)=>`<span class="blank"><span>${w}</span></span>`)}</p></div>
+    ${s.note?`<div class="note-card rv">${s.note}</div>`:''}`;
+  },
+  init:sec=>{
+    const blanks=$$('.blank',sec); let i=0;
+    const mark=()=>blanks.forEach((b,k)=>b.classList.toggle('next',k===i));
+    mark();
+    $$('.wo-bank .chip-stage',sec).forEach(c=>c.onclick=()=>{
+      if(i>=blanks.length) return;
+      if(c.dataset.w===$('span',blanks[i]).textContent){
+        blanks[i].classList.add('open'); c.classList.add('gone'); i++; mark();
+        if(i===blanks.length) celebrate($('.def-card',sec)); else sound.ding();
+      } else { shake(c); sound.wrong(); }
+    });
+  }
+};
+
+/* ربط بالرياضيات: مسألة + كشف خطوات الحل + سؤال الربط */
+R.math = {
+  html:s=>`<div class="q-card math-q rv"><span class="q-ic">🧮</span><p style="font-size:34px">${s.problem}</p></div>
+    <div class="reveal-grid rv" style="--n:${s.steps.length};--h:${s.h||230}px">${s.steps.map((it,k)=>`<button class="rev"><div class="rev-cover">${k+1}<small>اضغطي للحل</small></div>
+      <div class="rev-content"><div class="rev-ic">${it.icon}</div><div class="rev-t">${it.t}</div><p>${it.d}</p></div></button>`).join('')}</div>
+    <div class="center-row rv"><button class="btn ghost rev-all">👀 إظهار الحل</button><button class="btn primary math-go">🔗 سؤال الربط بالدرس</button></div>
+    <div class="math-link"><span class="ni">🛡️</span><div>${s.link}</div></div>`,
+  init:sec=>{ R.reveal.init(sec); $('.math-go',sec).onclick=()=>{ $('.math-link',sec).classList.add('show'); sound.ding(); }; }
+};
+
+/* اكتشاف المغالطة: الكلمة الخاطئة بين [ ] تُكشف مع التصحيح */
+R.fallacy = {
+  html:s=>`<div class="fal-top rv"><p class="lead">${s.prompt}</p>${s.seconds?'<div class="timer-slot"></div>':''}</div>
+    <div class="fal-list">${s.items.map((it,k)=>`<div class="fal rv"><div class="tf-n">${k+1}</div>
+      <div><p class="fal-t">❌ ${it.wrong.replace(/\[(.+?)\]/g,'<span class="err">$1</span>')}</p><div class="fal-fix">✓ ${it.fix}</div></div>
+      <button class="btn ghost fal-go">🔍 التصحيح</button></div>`).join('')}</div>`,
+  init:(sec,s)=>{
+    $$('.fal',sec).forEach(r=>$('.fal-go',r).onclick=()=>{ if(r.classList.contains('open')) return; r.classList.add('open'); sound.ding(); });
+    if(s.seconds) mountTimer($('.timer-slot',sec), s.seconds);
+  }
+};
+
+/* نشاط ورقة عمل: (قراءة / أحاديث / قصة) + سؤال + مؤقت + إجابة */
+R.activity = {
+  html:s=>`<div class="actv"><div class="actv-main">
+      ${s.read?`<div class="read-box rv"><span class="ni">📘</span><div>${s.read}</div></div>`:''}
+      ${(s.hadiths||[]).map(h=>`<div class="hadith rv"><p>${h.t}</p><small>${h.src}</small></div>`).join('')}
+      ${s.story?`<div class="story rv"><span class="st-ic">${s.story.icon}</span><p>${s.story.t}</p></div>`:''}
+      <div class="q-card big rv"><span class="q-ic">❓</span><p>${s.question}</p></div>
+      ${s.answer?`<div class="explain">💡 ${s.answer}</div>`:''}
+      ${s.answers?`<div class="chips">${s.answers.map(a=>`<span class="chip lg">${a}</span>`).join('')}</div>`:''}
+    </div>
+    <div class="actv-side rv"><div class="timer-slot"></div><button class="btn ghost actv-show">💡 الإجابة</button></div></div>`,
+  init:(sec,s)=>{
+    mountTimer($('.timer-slot',sec), s.seconds||120, { big:true });
+    $('.actv-show',sec).onclick=()=>{ $$('.explain,.chips',sec).forEach(e=>e.classList.add('show')); sound.ding(); };
+  }
+};
+
+/* لعبة التقويم الختامي: سؤال تلو الآخر مع مؤقت لكل سؤال */
+R.quiz = {
+  html:s=>`<div class="qz">
+    <div class="qz-start rv"><div class="qs-ic">🎮</div><p>${s.intro||''}</p><button class="btn primary lg qz-go">🚀 ابدئي اللعبة</button></div>
+    <div class="qz-play">
+      <div class="qz-meta"><div class="qz-dots">${s.questions.map(()=>'<i></i>').join('')}</div><div class="qz-bar"><i></i></div><div class="qz-sec"></div></div>
+      <div class="q-card"><span class="q-ic">❓</span><p class="qz-q"></p></div>
+      <div class="opts qz-opts"></div>
+      <div class="feedback"></div>
+      <div class="qz-nav"><button class="btn primary qz-next">السؤال التالي ⬅</button></div>
+    </div>
+    <div class="qz-end"><div class="qs-ic">🏆</div><h2 class="title" style="text-align:center">أحسنتنّ! انتهى التقويم الختامي</h2><p class="qz-score"></p><button class="btn ghost qz-again">↺ إعادة اللعبة</button></div>
+  </div>`,
+  init:(sec,s)=>{
+    const qz=$('.qz',sec), fb=$('.feedback',sec), dots=$$('.qz-dots i',sec), bar=$('.qz-bar i',sec), secEl=$('.qz-sec',sec), nextB=$('.qz-next',sec);
+    const T=s.seconds||20; let i=0, ok=0, done=false, cd=null;
+    const stop=()=>cd&&cd.stop();
+    const show=()=>{
+      const q=s.questions[i]; done=false; fb.textContent=''; fb.className='feedback'; nextB.style.visibility='hidden';
+      dots.forEach((d,k)=>d.classList.toggle('cur',k===i));
+      $('.qz-q',sec).textContent=q.q; retrigger($('.qz-q',sec).parentElement,'pop');
+      const box=$('.qz-opts',sec);
+      box.innerHTML=q.o.map((o,k)=>`<button class="opt" data-k="${k}"><span class="opt-ic">${'أبجد'[k]}</span><span>${o}</span></button>`).join('');
+      $$('.opt',box).forEach(b=>b.onclick=()=>{
+        if(done) return;
+        if(+b.dataset.k===q.a){
+          done=true; stop(); ok++; b.classList.add('correct'); $$('.opt',box).forEach(o=>o!==b&&o.classList.add('dim'));
+          dots[i].classList.add('ok'); setFb(fb,true); celebrate(b); nextB.style.visibility='visible';
+        } else { b.classList.remove('wrong'); void b.offsetWidth; b.classList.add('wrong'); setFb(fb,false); sound.wrong(); }
+      });
+      stop(); bar.style.transition='none'; bar.style.width='100%'; secEl.textContent=T; void bar.offsetWidth; bar.style.transition='';
+      cd=new Countdown(T, l=>{ secEl.textContent=l; bar.style.width=(l/T*100)+'%'; if(l<=5&&l>0) sound.tick(); }, ()=>{
+        if(done) return; done=true; dots[i].classList.add('miss');
+        $$('.opt',box).forEach(o=>{ if(+o.dataset.k===q.a) o.classList.add('correct'); else o.classList.add('dim'); });
+        setFb(fb,false,'⏰ انتهى الوقت! هذه هي الإجابة الصحيحة'); sound.bell(); nextB.style.visibility='visible';
+      });
+      cd.start();
+    };
+    const start=()=>{ i=0; ok=0; dots.forEach(d=>d.className=''); qz.classList.remove('ended'); qz.classList.add('playing'); sound.ac(); show(); };
+    $('.qz-go',sec).onclick=start; $('.qz-again',sec).onclick=start;
+    nextB.onclick=()=>{
+      if(i<s.questions.length-1){ i++; show(); return; }
+      stop(); qz.classList.remove('playing'); qz.classList.add('ended');
+      $('.qz-score',sec).textContent=`أجبتنّ عن ${ok} من ${s.questions.length} أسئلة في الوقت المحدد 🎉`; confetti.rain(200); sound.success();
+    };
+  }
+};
+
+/* الواجب: خطوات + شكل توضيحي للوحة النقاش (أو صورة حقيقية عبر image) */
+R.homework = {
+  html:s=>`<div class="hw">
+    <div class="hw-steps">${s.steps.map((t,k)=>`<div class="hw-step rv"><span class="goal-n">${k+1}</span><span>${t}</span></div>`).join('')}
+      ${s.book?`<div class="hw-book rv"><img src="${s.book.img}" alt=""><span>📘 ${s.book.t}</span></div>`:''}</div>
+    ${s.image?`<img class="hw-img rv" src="${s.image}" alt="لوحة النقاش">`:`<div class="board rv">
+      <div class="bd-head">💬 لوحة النقاش<small>${s.board.course}</small></div>
+      <div class="bd-body">
+        <div class="bd-post"><div class="bd-who"><span class="bd-av">👩‍🏫</span><div>${LESSON.teacher||'معلمة المادة'}<small>${s.board.title}</small></div></div>
+          <p class="bd-q">${s.board.q}</p></div>
+        <div class="bd-reply"><span class="bd-av">👧</span><div class="bd-line"><i style="width:85%"></i><i style="width:55%"></i></div></div>
+        <div class="bd-reply"><span class="bd-av">👧</span><div class="bd-line"><i style="width:70%"></i><i style="width:40%"></i></div></div>
+        <div class="bd-input"><span>اكتبي ردّكِ هنا…</span><b>إرسال</b></div>
+      </div></div>`}
+  </div>`
+};
+
+/* ---------------- 🎡 عجلة الأسماء ---------------- */
+// اسم العرض: الاسم الأول + الأخير، وإذا تكرر عند أكثر من طالبة يُضاف اسم الأب
+const STUDENT_NAME=(()=>{
+  const parts=n=>n.trim().split(/\s+/).filter(w=>w!=='بنت'&&w!=='بن');
+  const fl=n=>{ const w=parts(n); return w.length>1?w[0]+' '+w[w.length-1]:w[0]; };
+  const count={}; LESSON.students.forEach(n=>count[fl(n)]=(count[fl(n)]||0)+1);
+  const out={}; LESSON.students.forEach(n=>{ const w=parts(n); out[n]=count[fl(n)]>1&&w.length>2?w[0]+' '+w[1]+' '+w[w.length-1]:fl(n); });
+  return out;
+})();
+function mountWheel(slot, size){
+  slot.innerHTML=`<div class="wheel" ${size?`style="--ws:${size}px"`:''}><div class="wh-box"><div class="wh-ptr"></div><canvas width="1100" height="1100"></canvas><button class="wh-hub">لفّي</button></div>
+    <div class="wh-res">🎡 من ستجيب؟</div>
+    <div class="wh-opts"><label><input type="checkbox" class="wh-rm" checked> استبعاد الاسم بعد اختياره</label><button class="wh-reset">↺ كل الأسماء</button></div></div>`;
+  const cv=$('canvas',slot), cx=cv.getContext('2d'), hub=$('.wh-hub',slot), res=$('.wh-res',slot);
+  let names=LESSON.students.slice(), rot=0, pending=null;
+  const short=n=>STUDENT_NAME[n]||n;
+  const draw=()=>{
+    const W=cv.width, c=W/2, r=c-6, n=names.length, a=2*Math.PI/Math.max(n,1);
+    cx.clearRect(0,0,W,W);
+    names.forEach((nm,k)=>{
+      const s0=-Math.PI/2+k*a;
+      cx.beginPath(); cx.moveTo(c,c); cx.arc(c,c,r,s0,s0+a); cx.closePath();
+      cx.fillStyle=PALETTE[k%PALETTE.length]; cx.fill(); cx.strokeStyle='#fff'; cx.lineWidth=3; cx.stroke();
+      cx.save(); cx.translate(c,c); cx.rotate(s0+a/2); cx.fillStyle='#fff';
+      cx.font=`800 ${n>24?34:n>14?38:44}px Cairo, Tahoma, sans-serif`; cx.textAlign='right'; cx.textBaseline='middle'; cx.direction='rtl';
+      cx.fillText(short(nm), r-24, 2); cx.restore();
+    });
+    if(!n){ cx.fillStyle='#EDE9FE'; cx.beginPath(); cx.arc(c,c,r,0,7); cx.fill(); }
+  };
+  draw();
+  hub.onclick=()=>{
+    if(pending!==null && $('.wh-rm',slot).checked){ names.splice(pending,1); draw(); }
+    pending=null;
+    if(!names.length){ res.textContent='انتهت الأسماء 🎉 اضغطي «كل الأسماء»'; return; }
+    sound.ac(); hub.disabled=true;
+    const n=names.length, deg=360/n, pick=Math.floor(Math.random()*n);
+    // الدوران بحيث يقف منتصف شريحة الاسم المختار تحت المؤشر
+    const target=360-(pick*deg+deg/2) + (Math.random()-.5)*deg*.6;
+    rot += 360*6 + ((target-rot)%360+360)%360;
+    cv.style.transform=`rotate(${rot}deg)`;
+    res.textContent='…'; let t=0; const tick=()=>{ if(t>4600) return; sound.tick(); t+=60+t/12; setTimeout(tick,60+t/12); }; tick();
+    setTimeout(()=>{ hub.disabled=false; pending=pick; res.textContent='🌟 '+short(names[pick]); retrigger(res,'pop'); celebrate(res,true); },5300);
+  };
+  $('.wh-reset',slot).onclick=()=>{ names=LESSON.students.slice(); pending=null; draw(); res.textContent='🎡 من ستجيب؟'; };
+}
+
 /* ---------------- 🧱 بناء الشرائح ---------------- */
 const stage=$('#stage'); const slides=[]; let current=0;
 const ANIMS=['slide','fade','zoom'];
 SLIDES.forEach((s,i)=>{
   const r=R[s.type]; if(!r){ console.warn('نوع شريحة غير معروف:',s.type); return; }
   const sec=document.createElement('section'); sec.className='slide t-'+s.type;
-  const head=(s.tag?`<div class="tag rv">${s.tag}</div>`:'')+(s.title&&!['title','closing','section'].includes(s.type)?`<h2 class="title rv">${s.title}</h2>`:'');
+  const head=(s.tag?`<div class="tag rv">${s.tag}</div>`:'')+(s.title&&!['title','closing','section','cover'].includes(s.type)?`<h2 class="title rv">${s.title}</h2>`:'')
+    +(s.act?`<div class="act rv"><span>📄 ورقة عمل • نشاط <b>${s.act.n}</b></span><span>⏱️ المدة: <b>${s.act.time}</b></span><span>👥 <b>${s.act.kind}</b></span>${s.act.goal?`<span>🎯 ${s.act.goal}</span>`:''}</div>`:'');
   sec.innerHTML=`<div class="slide-inner">${head}<div class="content">${r.html(s,i)}</div></div>`;
   stage.appendChild(sec);
   $$('.rv',sec).forEach((el,k)=>el.style.setProperty('--i',Math.min(k,9)));
@@ -1624,6 +2112,9 @@ stage.addEventListener('touchend',e=>{ if(tx===null) return; const dx=e.changedT
 
 /* ---------------- 🎛️ أزرار الشريط ---------------- */
 $('#next').onclick=next; $('#prev').onclick=prev; $('#clapBtn').onclick=clap;
+mountWheel($('#wheelModal .wm-slot'), 720);
+$('#wheelBtn').onclick=()=>$('#wheelModal').classList.toggle('open');
+$('#wheelModal .wm-close').onclick=()=>$('#wheelModal').classList.remove('open');
 $('#fsBtn').onclick=()=>{ if(!document.fullscreenElement) document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen(); else document.exitFullscreen(); };
 
 /* إخفاء الشريط تلقائيًا عند عدم تحريك الماوس */
