@@ -639,7 +639,8 @@ body.idle #hint{opacity:0}
 .t-wordorder .lead{font-size:28px}
 .t-wordorder .def-card{padding:24px 44px}
 .t-wordorder .def-text{font-size:38px;line-height:1.95}
-.t-wordorder .blank{font-size:38px}
+.t-wordorder .blank{font-size:38px;margin:0 4px}
+.t-wordorder .bk{white-space:nowrap}
 .t-wordorder .note-card{font-size:25px;padding:14px 30px}
 .t-wordorder .note-card .ni{font-size:54px}
 .blank.next{background:var(--ps);box-shadow:0 0 0 5px rgba(124,58,237,.25);animation:pulse 1.4s infinite}
@@ -745,7 +746,7 @@ body.idle #hint{opacity:0}
 .qz-nav{display:flex;justify-content:center;gap:20px;min-height:76px}
 
 /* ---------- الواجب ---------- */
-.hw{flex:1;display:grid;grid-template-columns:1fr 1.1fr;gap:44px;min-height:0;align-items:center}
+.hw{flex:1;display:grid;grid-template-columns:.8fr 1.35fr;gap:44px;min-height:0;align-items:center}
 .hw-steps{display:flex;flex-direction:column;gap:18px}
 .hw-step{display:flex;gap:20px;align-items:center;background:#fff;border:3px solid var(--line);border-radius:24px;padding:16px 26px;font-size:31px;font-weight:800;box-shadow:var(--shadow-s)}
 .hw-step .goal-n{width:58px;height:58px}
@@ -767,7 +768,15 @@ body.idle #hint{opacity:0}
 .bd-input{display:flex;gap:12px;align-items:center;background:#fff;border:2px solid #CBD5E1;border-radius:999px;padding:8px 10px 8px 22px;font-size:24px;color:#94A3B8;font-weight:700}
 .bd-input span{flex:1}
 .bd-input b{background:#0F766E;color:#fff;border-radius:999px;padding:6px 22px;font-size:22px}
-.hw-img{width:100%;border-radius:28px;box-shadow:var(--shadow);border:3px solid var(--line)}
+.hw-img{width:100%;border-radius:28px;box-shadow:var(--shadow);border:3px solid var(--line);cursor:zoom-in}
+.hw-steps{gap:14px}
+.hw-step{font-size:27px;padding:10px 20px;gap:16px}
+.hw-step .goal-n{width:48px;height:48px;font-size:24px}
+.hw-book{font-size:24px}
+.hw-book img{height:110px}
+.hw-zoom{position:absolute;inset:-64px -110px -110px;z-index:20;background:rgba(27,18,48,.9);display:none;align-items:center;justify-content:center;cursor:zoom-out}
+.hw-zoom.show{display:flex;animation:inFade .3s}
+.hw-zoom img{max-width:94%;max-height:92%;border-radius:24px;box-shadow:var(--shadow)}
 
 .hadith p{font-size:29px;line-height:1.65}
 .hadith{padding:10px 28px}
@@ -1139,7 +1148,6 @@ const SLIDES = [
 
   /* 18) استراتيجية القراءة الفعالة */
   { type:'activity', tag:'📖 استراتيجية: القراءة الفعالة', title:'كيف يتم تخزين بصمتي الرقمية؟',
-    act:{ n:3, time:'2 د', kind:'جماعي', goal:'أن توضّح الطالبة كيف تُحفظ البصمة الرقمية' },
     read:'طالبتي العزيزة، اقرئي المادة العلمية في الكتاب <b>صفحة 93</b>، ثم أجيبي عن السؤال التالي:',
     question:'كيف يتم تخزين بصمتي الرقمية؟',
     answer:'تُحفظ البصمة الرقمية على شكل <b>ملف</b> يشمل البيانات التي تخص المستخدم، والتي يتم جمعها كنتيجة <b>للتصفح والاتصالات والأعمال الأخرى</b> التي يقوم بها المستخدم.',
@@ -1147,7 +1155,7 @@ const SLIDES = [
 
   /* 19) ربط بالدين والحياة: المناقشة والحوار */
   { type:'activity', tag:'🌿 ربط بالدين والحياة • المناقشة والحوار', title:'بصمتي الرقمية… أثر يبقى',
-    note:'🌿 ربط بالحياة والدين – مناقشة وحوار (مهارات تفكير عليا)',
+    subline:'🌿 ربط بالحياة والدين – مناقشة وحوار (مهارات تفكير عليا)',
     hadiths:[
       { t:'عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ</mark>: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ»', src:'رواه مسلم (1631)' },
       { t:'وعَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>مَنْ دَعَا إِلَى هُدًى، كَانَ لَهُ مِنَ الْأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ</mark>، لَا يَنْقُصُ ذَلِكَ مِنْ أُجُورِهِمْ شَيْئًا»', src:'رواه مسلم (2674)' }
@@ -1199,7 +1207,6 @@ const SLIDES = [
 
   /* 24) حددي التأثير (2) */
   { type:'mcq', tag:'📝 تقويم تكويني', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
-    act:{ n:5, time:'3 د', kind:'جماعي', goal:'استنتاج الطريقة التي تؤثر بها البصمة على دورة حياة النظام' },
     question:'خسرت شركة خطوط الطيران (United Airlines) أكثر من مليار دولار من قيمتها السوقية بعد أن انتشر مقطع فيديو لراكب أُجبر بعنف على الابتعاد عن رحلة مكتظة. حصل الفيديو على أكثر من مليون إشارة في اليوم وأكثر من 100 مليون مشاهدة.',
     options:[
       { icon:'🚨', t:'الأخطار الأمنية Security Risks' },
@@ -1278,9 +1285,9 @@ const SLIDES = [
     ] },
 
   /* 30) الواجب: منصة مدرستي — لوحة النقاش */
-  // لاستبدال الشكل التوضيحي بصورة حقيقية للوحة النقاش: ضعي الصورة في مجلد assets واكتبي مثلًا image:'assets/board.png'
   { type:'homework', tag:'🏠 الواجب', title:'الواجب في منصة مدرستي – لوحة النقاش',
-    steps:['ادخلي إلى <b>منصة مدرستي</b>','افتحي <b>لوحة النقاش</b> في مقرر التقنية الرقمية 3','أجيبي عن سؤال المعلمة، وردّي على إجابة زميلتين 💬'],
+    steps:['ادخلي إلى <b>منصة مدرستي</b>','افتحي <b>لوحة النقاش</b> في مقرر التقنية الرقمية 3','ابتكري فكرة تطبيق وأجيبي عن محاور النقاش 💡','تفاعلي مع فكرة إحدى زميلاتك واقترحي تحسينًا أمنيًا 💬'],
+    image:'board.jpg',
     book:{ img:'assets/book-p106.png', t:'الكتاب المدرسي صفحة 106 – تدريب 1' },
     board:{ course:'التقنية الرقمية 3', title:'واجب: البصمة الرقمية',
       q:'ما نوع البصمة الرقمية الناتجة عن استخدام حساب لينكد إن (LinkedIn)؟ وضّحي إجابتك بمثال.' } }
@@ -1944,7 +1951,7 @@ R.wordorder = {
     return `<p class="lead rv">${s.prompt}</p>
     <div class="wo-bank rv">${shuffle(words.map((w,k)=>({w,k}))).map(o=>`<button class="chip-stage" data-w="${o.w}">${o.w}</button>`).join('')}</div>
     <div class="def-card rv"><div class="def-src">${s.source}</div>
-      <p class="def-text">${s.text.replace(/\[(.+?)\]/g,(_,w)=>`<span class="blank"><span>${w}</span></span>`)}</p></div>
+      <p class="def-text">${s.text.replace(/(\S*?)\[(.+?)\]([،.]?)/g,(_,pre,w,post)=>`<span class="bk">${pre}<span class="blank"><span>${w}</span></span>${post}</span>`)}</p></div>
     ${s.note?`<div class="note-card rv">${s.note}</div>`:''}`;
   },
   init:sec=>{
@@ -2053,7 +2060,7 @@ R.homework = {
   html:s=>`<div class="hw">
     <div class="hw-steps">${s.steps.map((t,k)=>`<div class="hw-step rv"><span class="goal-n">${k+1}</span><span>${t}</span></div>`).join('')}
       ${s.book?`<div class="hw-book rv"><img src="${s.book.img}" alt=""><span>📘 ${s.book.t}</span></div>`:''}</div>
-    ${s.image?`<img class="hw-img rv" src="${s.image}" alt="لوحة النقاش">`:`<div class="board rv">
+    ${s.image?`<img class="hw-img rv" src="${s.image}" alt="لوحة النقاش" title="اضغطي للتكبير"><div class="hw-zoom"><img src="${s.image}" alt=""></div>`:`<div class="board rv">
       <div class="bd-head">💬 لوحة النقاش<small>${s.board.course}</small></div>
       <div class="bd-body">
         <div class="bd-post"><div class="bd-who"><span class="bd-av">👩‍🏫</span><div>${LESSON.teacher||'معلمة المادة'}<small>${s.board.title}</small></div></div>
@@ -2062,7 +2069,8 @@ R.homework = {
         <div class="bd-reply"><span class="bd-av">👧</span><div class="bd-line"><i style="width:70%"></i><i style="width:40%"></i></div></div>
         <div class="bd-input"><span>اكتبي ردّكِ هنا…</span><b>إرسال</b></div>
       </div></div>`}
-  </div>`
+  </div>`,
+  init:sec=>{ const z=$('.hw-zoom',sec); if(!z) return; $('.hw-img',sec).onclick=()=>z.classList.add('show'); z.onclick=()=>z.classList.remove('show'); }
 };
 
 /* ---------------- 🎡 عجلة الأسماء ---------------- */
@@ -2118,7 +2126,7 @@ SLIDES.forEach((s,i)=>{
   const r=R[s.type]; if(!r){ console.warn('نوع شريحة غير معروف:',s.type); return; }
   const sec=document.createElement('section'); sec.className='slide t-'+s.type;
   const head=(s.tag?`<div class="tag rv">${s.tag}</div>`:'')+(s.title&&!['title','closing','section','cover'].includes(s.type)?`<h2 class="title rv">${s.title}</h2>`:'')
-    +(s.note?`<div class="act rv"><span>${s.note}</span></div>`:'')
+    +(s.subline?`<div class="act rv"><span>${s.subline}</span></div>`:'')
     +(s.act?`<div class="act rv"><span>📄 ورقة عمل • نشاط <b>${s.act.n}</b></span><span>⏱️ المدة: <b>${s.act.time}</b></span><span>👥 <b>${s.act.kind}</b></span>${s.act.goal?`<span>🎯 ${s.act.goal}</span>`:''}</div>`:'');
   sec.innerHTML=`<div class="slide-inner">${head}<div class="content">${r.html(s,i)}</div></div>`;
   stage.appendChild(sec);
