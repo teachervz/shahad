@@ -777,6 +777,38 @@ body.idle #hint{opacity:0}
 .t-mcq .slide-inner:has(.act) .opt{font-size:30px;padding:14px 24px}
 .t-mcq .slide-inner:has(.act) .opt-ic{width:62px;height:62px;font-size:34px}
 .t-mcq .slide-inner:has(.act) .content{gap:16px}
+/* ---------- مقطع صوتي + ربط بالوطن ---------- */
+.au-wrap{flex:1;display:grid;grid-template-columns:1.05fr 1fr;gap:44px;align-items:center;min-height:0}
+.au-card{background:linear-gradient(150deg,var(--p2),var(--pd));color:#fff;border-radius:40px;padding:40px 44px;display:flex;flex-direction:column;align-items:center;gap:22px;box-shadow:var(--shadow);text-align:center}
+.au-label{font-size:40px;font-weight:900;line-height:1.4}
+.au-play{width:170px;height:170px;border-radius:50%;background:#fff;color:var(--pd);font-size:70px;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 0 0 18px rgba(255,255,255,.18);transition:transform .2s}
+.au-play:hover{transform:scale(1.06)}
+.au-play.on{animation:pulse 1.6s infinite}
+.au-wave{display:flex;align-items:center;gap:8px;height:80px}
+.au-wave i{width:10px;height:20%;border-radius:9px;background:rgba(255,255,255,.55);transition:height .15s}
+.au-card.playing .au-wave i{animation:wave 1s ease-in-out infinite;background:#fff}
+.au-wave i:nth-child(3n){animation-delay:-.3s!important}.au-wave i:nth-child(3n+1){animation-delay:-.6s!important}.au-wave i:nth-child(4n){animation-delay:-.15s!important}
+@keyframes wave{50%{height:100%}}
+.au-bar{width:100%;display:flex;align-items:center;gap:16px;font-size:24px;font-weight:800;direction:ltr}
+.au-track{flex:1;height:14px;border-radius:999px;background:rgba(255,255,255,.25);overflow:hidden;cursor:pointer}
+.au-track i{display:block;height:100%;width:0;background:#FDE68A;border-radius:999px}
+.au-hint{font-size:27px;font-weight:700;opacity:.9;line-height:1.5}
+.nat{display:flex;flex-direction:column;gap:22px}
+.nat-q{position:relative;background:linear-gradient(150deg,#ECFDF5,#D1FAE5);border:3px solid #6EE7B7;border-radius:36px;padding:34px 40px;text-align:center}
+.nat-q .flag{font-size:90px;line-height:1.1}
+.nat-q p{font-size:48px;font-weight:900;color:#065F46;line-height:1.5}
+.nat .q-card{border-right-color:#059669}
+.nat{gap:16px}
+.nat-q{padding:20px 34px}
+.nat-q .flag{font-size:64px}
+.nat-q p{font-size:40px}
+.nat .q-card{font-size:34px;padding:18px 30px}
+.nat .chip.lg{font-size:25px;padding:6px 20px}
+.nat .btn{font-size:26px;padding:10px 30px}
+.nat .chips{opacity:0;transform:translateY(10px);transition:.5s}
+.nat .chips.show{opacity:1;transform:none}
+
 /* طبقة الفيديو داخل شريحة السؤال */
 .vid-ov{position:absolute;inset:-64px -110px -110px;z-index:20;background:rgba(27,18,48,.88);display:none;flex-direction:column;align-items:center;justify-content:center;gap:24px}
 .vid-ov.show{display:flex;animation:inFade .35s}
@@ -1036,7 +1068,7 @@ const SLIDES = [
       'اشرحي طريقة دمج الأمن السيبراني في مرحلة <b>التحليل</b>.',
       'ارسمي مخططًا بصريًا لدمج الأمن السيبراني في مرحلة <b>التصميم</b>.',
       'وضّحي ماذا يحدث إذا لم نراجع التعليمات البرمجية للأمن السيبراني في مرحلة <b>التطوير</b>.',
-      'أجيبي عن الأسئلة الموجودة في ورقتك عن دمج الأمن السيبراني في مرحلة <b>التنفيذ</b>.',
+      'أجيبي عن الأسئلة الموجودة في ورقتك عن دمج الأمن السيبراني في مرحلة <b>الاختبارات</b>.',
       'فسّري كيف يتم ضبط الضوابط الأمنية السيبرانية قبل نشر النظام في مرحلة <b>التنفيذ</b>.',
       'اكتبي تقريرًا عن دمج الأمن السيبراني في مرحلة <b>الصيانة</b>.'
     ],
@@ -1062,8 +1094,7 @@ const SLIDES = [
     explain:'في مرحلة <b>الاختبارات</b> نحاول «مهاجمة» النظام بطريقة مشروعة لنكتشف الثغرات قبل المخترقين.' },
 
   /* 15) استراتيجية اكتشاف المغالطة */
-  { type:'fallacy', tag:'🕵️‍♀️ استراتيجية: اكتشاف المغالطة', title:'اكتشفي الخطأ… وصحّحيه',
-    act:{ n:2, time:'1 د', kind:'فردي', goal:'أن تشرح الطالبة كيفية دمج الأمن السيبراني في دورة حياة النظام' },
+  { type:'fallacy', tag:'📝 تقويم تكويني – استراتيجية اكتشاف المغالطة', title:'اكتشفي الخطأ… وصحّحيه',
     prompt:'طالبتي الرائعة، وضّحي الخطأ في العبارات التالية مع تصحيحه ✏️',
     seconds:60,
     items:[
@@ -1116,7 +1147,7 @@ const SLIDES = [
 
   /* 19) ربط بالدين والحياة: المناقشة والحوار */
   { type:'activity', tag:'🌿 ربط بالدين والحياة • المناقشة والحوار', title:'بصمتي الرقمية… أثر يبقى',
-    act:{ n:4, time:'2 د', kind:'جماعي', goal:'إعطاء أمثلة للبصمة الرقمية (مهارات تفكير عليا)' },
+    note:'🌿 ربط بالحياة والدين – مناقشة وحوار (مهارات تفكير عليا)',
     hadiths:[
       { t:'عَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>إِذَا مَاتَ الْإِنْسَانُ انْقَطَعَ عَنْهُ عَمَلُهُ إِلَّا مِنْ ثَلَاثَةٍ</mark>: إِلَّا مِنْ صَدَقَةٍ جَارِيَةٍ، أَوْ عِلْمٍ يُنْتَفَعُ بِهِ، أَوْ وَلَدٍ صَالِحٍ يَدْعُو لَهُ»', src:'رواه مسلم (1631)' },
       { t:'وعَنْ أَبِي هُرَيْرَةَ، أَنَّ رَسُولَ اللهِ ﷺ قَالَ: «<mark>مَنْ دَعَا إِلَى هُدًى، كَانَ لَهُ مِنَ الْأَجْرِ مِثْلُ أُجُورِ مَنْ تَبِعَهُ</mark>، لَا يَنْقُصُ ذَلِكَ مِنْ أُجُورِهِمْ شَيْئًا»', src:'رواه مسلم (2674)' }
@@ -1125,15 +1156,22 @@ const SLIDES = [
     answers:['📚 نشر العلم النافع','🤲 الدعوة إلى الخير والقيم','💬 التعليق بلطف واحترام','✅ مشاركة محتوى موثوق','🤝 دعم المبادرات التطوعية','🚫 عدم نشر الشائعات'],
     seconds:120 },
 
-  /* 20) استراتيجية حل المشكلة */
-  { type:'activity', tag:'🧠 استراتيجية حل المشكلة', title:'ماذا فعل فهد؟',
-    act:{ n:2, time:'5 د', kind:'جماعي', goal:'البصمة الرقمية' },
+  /* 20) إثراء: مشاركة ولي أمر + ربط بالوطن */
+  { type:'audio', tag:'✨ إثراء', title:'مشاركة ولي أمر & ربط بالوطن', anim:'fade',
+    src:'صوت ام رسيل.m4a',
+    label:'مشاركة والدة الطالبة المميزة رسيل 💖',
+    hint:'استمعي جيدًا… ماذا تضيف رسالة الأم لما تعلّمناه عن البصمة الرقمية؟',
+    quote:'وطنٌ لا نحميه… لا نستحق العيش فيه',
+    question:'برأيكِ… كيف أحمي وطني في الفضاء السيبراني؟',
+    answers:['🔐 أحمي بياناتي وحساباتي','🚫 لا أنشر الشائعات','📣 أبلّغ عن الاحتيال','🤍 أترك بصمة رقمية تشرّف وطني'] },
+
+  /* 21) استراتيجية حل المشكلة */
+  { type:'activity', tag:'💬 المناقشة والحوار', title:'ماذا فعل فهد؟',
     story:{ icon:'👨‍💼', t:'شارك «فهد» الموظف في شركة عالمية معلومات حساسة عن الشركة <b>عن غير قصد</b> على وسائل التواصل الاجتماعي.' },
     question:'كيف ستتأثر هذه الشركة بسبب ما فعله فهد؟',
-    answer:'قد يستغل مجرمو الإنترنت هذه المعلومات لشنّ <b>هجمات مستهدفة</b> على الشركة وأنظمتها (أخطار أمنية)، وقد تتضرر <b>سمعة الشركة</b> وثقة عملائها، وقد تتعرض لـ<b>غرامات</b> لعدم الالتزام بقوانين حماية البيانات.',
-    seconds:300 },
+    answer:'قد يستغل مجرمو الإنترنت هذه المعلومات لشنّ <b>هجمات مستهدفة</b> على الشركة وأنظمتها (أخطار أمنية)، وقد تتضرر <b>سمعة الشركة</b> وثقة عملائها، وقد تتعرض لـ<b>غرامات</b> لعدم الالتزام بقوانين حماية البيانات.' },
 
-  /* 21) بطاقات: تأثير البصمة على الأنظمة + عجلة الأسماء */
+  /* 22) بطاقات: تأثير البصمة على الأنظمة + عجلة الأسماء */
   { type:'cards', tag:'🃏 بطاقات الاكتشاف', title:'كيف تؤثر البصمة الرقمية على الأنظمة والمؤسسات؟', wheel:true, h:290,
     subtitle:'اقرئي إحدى البطاقات 📖',
     cards:[
@@ -1147,9 +1185,8 @@ const SLIDES = [
         text:'مراقبة البصمة الرقمية بانتظام عبر وسائل التواصل والمنصات لاكتشاف الأخطار مبكرًا.' }
     ] },
 
-  /* 22) حددي التأثير (1) */
-  { type:'mcq', tag:'💬 استراتيجية: المناقشة والحوار', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
-    act:{ n:5, time:'3 د', kind:'جماعي', goal:'استنتاج الطريقة التي تؤثر بها البصمة على دورة حياة النظام' },
+  /* 23) حددي التأثير (1) */
+  { type:'mcq', tag:'📝 تقويم تكويني', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
     question:'شارك الموظف معلومات حساسة عن النظام من غير قصد على وسائل التواصل الاجتماعي، وتم استخدام هذه المعلومات في هجوم احتيالي على المنظمة.',
     options:[
       { icon:'🚨', t:'الأخطار الأمنية Security Risks' },
@@ -1160,8 +1197,8 @@ const SLIDES = [
     answer:0,
     explain:'استغلال معلومات منشورة لشنّ هجوم على النظام هو من <b>الأخطار الأمنية</b>.' },
 
-  /* 23) حددي التأثير (2) */
-  { type:'mcq', tag:'💬 استراتيجية: المناقشة والحوار', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
+  /* 24) حددي التأثير (2) */
+  { type:'mcq', tag:'📝 تقويم تكويني', title:'حدّدي تأثير البصمة الرقمية على دورة حياة النظام',
     act:{ n:5, time:'3 د', kind:'جماعي', goal:'استنتاج الطريقة التي تؤثر بها البصمة على دورة حياة النظام' },
     question:'خسرت شركة خطوط الطيران (United Airlines) أكثر من مليار دولار من قيمتها السوقية بعد أن انتشر مقطع فيديو لراكب أُجبر بعنف على الابتعاد عن رحلة مكتظة. حصل الفيديو على أكثر من مليون إشارة في اليوم وأكثر من 100 مليون مشاهدة.',
     options:[
@@ -1173,7 +1210,7 @@ const SLIDES = [
     answer:1,
     explain:'انتشار المحتوى السلبي أثّر على صورة الشركة وقيمتها، وهذا من <b>إدارة السمعة</b>.' },
 
-  /* 24) كشف تدريجي: آثار التعقب الرقمية */
+  /* 25) كشف تدريجي: آثار التعقب الرقمية */
   { type:'reveal', tag:'👀 اكشفي', title:'آثار التعقب الرقمية (Digital Traces)', h:330,
     qIcon:'🧐', question:'كل نشاط لكِ يترك «آثارًا» تكوّن بصمتك… تنقسم إلى نوعين، ما هما؟',
     items:[
@@ -1181,7 +1218,7 @@ const SLIDES = [
       { icon:'🕶️', t:'آثار غير مقصودة وغير مرئية', d:'سجلات زيارات المواقع، عمليات البحث، سجلات تحركاتك على الإنترنت وتواصلك مع الآخرين.' }
     ] },
 
-  /* 25) قيمة دينية وربط باللغة العربية */
+  /* 26) قيمة دينية وربط باللغة العربية */
   { type:'value', tag:'🌿 آثارنا… مكتوبة', title:'قيمة دينية وربط باللغة العربية', anim:'fade', h:250,
     verse:'إِنَّا نَحْنُ نُحْيِي الْمَوْتَىٰ <mark>وَنَكْتُبُ مَا قَدَّمُوا وَآثَارَهُمْ</mark> ۚ وَكُلَّ شَيْءٍ أَحْصَيْنَاهُ فِي إِمَامٍ مُّبِينٍ',
     source:'سورة يس – الآية 12',
@@ -1192,7 +1229,7 @@ const SLIDES = [
     ],
     tip:'🤍 قبل أن تنشري أو تعلّقي… اسألي نفسك: هل أرضى أن يُكتب هذا في صحيفتي؟' },
 
-  /* 26) تقويم تكويني: صنّفي آثار التعقب */
+  /* 27) تقويم تكويني: صنّفي آثار التعقب */
   { type:'sort', tag:'📝 تقويم تكويني', title:'صنّفي آثار التعقب الرقمية', pointEach:true,
     prompt:'هل هذا الأثر <b>مقصود ومرئي</b> أم <b>غير مقصود وغير مرئي</b>؟ اضغطي على العمود المناسب',
     buckets:[
@@ -1207,7 +1244,7 @@ const SLIDES = [
       { icon:'▶️', t:'التعليقات على مقاطع فيديو يوتيوب', b:'v' }
     ] },
 
-  /* 27) محاكاة سجل الخادم */
+  /* 28) محاكاة سجل الخادم */
   { type:'terminal', tag:'🔍 لاحظي واكتشفي', title:'ماذا يسجّل الخادم عنكِ في ثانية واحدة؟',
     url:'https://www.cyber-school.sa/lesson',
     pageText:'اضغطي لزيارة الموقع وراقبي الشاشة السوداء 👉',
@@ -1224,7 +1261,7 @@ const SLIDES = [
     question:'ماذا نسمي هذا الملف؟ ومن يستطيع رؤيته؟',
     answer:'هذه <b>سجلات الخادم (Server Logs)</b>: تُضاف إليها بيانات في كل زيارة، ولا يراها إلا <b>مالك الموقع</b>… وقد تُتتبَّع زياراتك بصمت دون علمك 🤫' },
 
-  /* 28) تقويم ختامي: لعبة تفاعلية */
+  /* 29) تقويم ختامي: لعبة تفاعلية */
   { type:'quiz', tag:'🏁 تقويم ختامي', title:'لعبة: مَن تحمي النظام؟', seconds:20,
     intro:'أسئلة سريعة… لكل سؤال 20 ثانية ⏱️ والمجموعة التي تجيب أولًا تكسب النقطة!',
     questions:[
@@ -1240,7 +1277,7 @@ const SLIDES = [
       { q:'خسارة شركة بسبب انتشار مقطع سلبي عنها هو تأثير البصمة الرقمية على:', o:['التوافق','المراقبة','إدارة السمعة','الأخطار الأمنية'], a:2 }
     ] },
 
-  /* 29) الواجب: منصة مدرستي — لوحة النقاش */
+  /* 30) الواجب: منصة مدرستي — لوحة النقاش */
   // لاستبدال الشكل التوضيحي بصورة حقيقية للوحة النقاش: ضعي الصورة في مجلد assets واكتبي مثلًا image:'assets/board.png'
   { type:'homework', tag:'🏠 الواجب', title:'الواجب في منصة مدرستي – لوحة النقاش',
     steps:['ادخلي إلى <b>منصة مدرستي</b>','افتحي <b>لوحة النقاش</b> في مقرر التقنية الرقمية 3','أجيبي عن سؤال المعلمة، وردّي على إجابة زميلتين 💬'],
@@ -1807,6 +1844,32 @@ R.closing = {
   enter:()=>setTimeout(()=>confetti.rain(),700)
 };
 
+/* مقطع صوتي (مشاركة ولي أمر) + ربط بالوطن */
+R.audio = {
+  html:s=>`<div class="au-wrap">
+    <div class="au-card rv"><div class="au-label">${s.label}</div>
+      <button class="au-play">▶</button>
+      <div class="au-wave">${'<i></i>'.repeat(22)}</div>
+      <div class="au-bar"><span class="au-cur">0:00</span><div class="au-track"><i></i></div><span class="au-dur">0:00</span></div>
+      ${s.hint?`<p class="au-hint">${s.hint}</p>`:''}
+      <audio src="${s.src}" preload="auto"></audio></div>
+    <div class="nat">
+      <div class="nat-q rv"><div class="flag">🇸🇦</div><p>«${s.quote}»</p></div>
+      <div class="q-card rv"><span class="q-ic">💚</span><p>${s.question}</p></div>
+      ${s.answers?`<div class="center-row rv"><button class="btn ghost nat-ans">💡 أفكار مقترحة</button></div><div class="chips">${s.answers.map(a=>`<span class="chip lg">${a}</span>`).join('')}</div>`:''}
+    </div></div>`,
+  init:sec=>{
+    const au=$('audio',sec), card=$('.au-card',sec), play=$('.au-play',sec), bar=$('.au-track i',sec);
+    const set=()=>{ const on=!au.paused; card.classList.toggle('playing',on); play.classList.toggle('on',on); play.textContent=on?'⏸':'▶'; };
+    play.onclick=()=>{ au.paused?au.play().catch(()=>{}):au.pause(); };
+    ['play','pause','ended'].forEach(e=>au.addEventListener(e,set));
+    au.addEventListener('loadedmetadata',()=>$('.au-dur',sec).textContent=fmt(Math.round(au.duration)));
+    au.addEventListener('timeupdate',()=>{ $('.au-cur',sec).textContent=fmt(Math.floor(au.currentTime)); bar.style.width=(au.currentTime/(au.duration||1)*100)+'%'; });
+    $('.au-track',sec).onclick=e=>{ const r=e.currentTarget.getBoundingClientRect(); au.currentTime=(e.clientX-r.left)/r.width*(au.duration||0); };
+    const ans=$('.nat-ans',sec); if(ans) ans.onclick=()=>{ $('.nat .chips',sec).classList.add('show'); sound.ding(); };
+  }
+};
+
 /* الغلاف بصورة خلفية */
 R.cover = {
   html:s=>`<div class="cover-bg" style="background-image:url('${s.image}')"></div>
@@ -1930,9 +1993,9 @@ R.activity = {
       ${s.answer?`<div class="explain">💡 ${s.answer}</div>`:''}
       ${s.answers?`<div class="chips">${s.answers.map(a=>`<span class="chip lg">${a}</span>`).join('')}</div>`:''}
     </div>
-    <div class="actv-side rv"><div class="timer-slot"></div><button class="btn ghost actv-show">💡 الإجابة</button></div></div>`,
+    <div class="actv-side rv">${s.seconds?'<div class="timer-slot"></div>':''}<button class="btn ghost actv-show">💡 الإجابة</button></div></div>`,
   init:(sec,s)=>{
-    mountTimer($('.timer-slot',sec), s.seconds||120, { big:true });
+    if(s.seconds) mountTimer($('.timer-slot',sec), s.seconds, { big:true });
     $('.actv-show',sec).onclick=()=>{ $$('.explain,.chips',sec).forEach(e=>e.classList.add('show')); sound.ding(); };
   }
 };
@@ -2055,6 +2118,7 @@ SLIDES.forEach((s,i)=>{
   const r=R[s.type]; if(!r){ console.warn('نوع شريحة غير معروف:',s.type); return; }
   const sec=document.createElement('section'); sec.className='slide t-'+s.type;
   const head=(s.tag?`<div class="tag rv">${s.tag}</div>`:'')+(s.title&&!['title','closing','section','cover'].includes(s.type)?`<h2 class="title rv">${s.title}</h2>`:'')
+    +(s.note?`<div class="act rv"><span>${s.note}</span></div>`:'')
     +(s.act?`<div class="act rv"><span>📄 ورقة عمل • نشاط <b>${s.act.n}</b></span><span>⏱️ المدة: <b>${s.act.time}</b></span><span>👥 <b>${s.act.kind}</b></span>${s.act.goal?`<span>🎯 ${s.act.goal}</span>`:''}</div>`:'');
   sec.innerHTML=`<div class="slide-inner">${head}<div class="content">${r.html(s,i)}</div></div>`;
   stage.appendChild(sec);
@@ -2068,7 +2132,7 @@ $('#brand').textContent=`${LESSON.lessonNo}: ${LESSON.title}`;
 function go(n){
   if(n<0||n>=slides.length) return;
   const dir=n>=current?1:-1, old=slides[current].el, nw=slides[n].el;
-  $$('video',old).forEach(v=>v.pause());
+  $$('video,audio',old).forEach(v=>v.pause());
   if(n!==current){ old.classList.remove('active'); retrigger(old,'leaving'); setTimeout(()=>old.classList.remove('leaving'),460); }
   const anim=slides[n].cfg.anim||ANIMS[n%ANIMS.length];
   nw.classList.remove('in-fade','in-zoom','in-slide-next','in-slide-prev','active'); void nw.offsetWidth;
